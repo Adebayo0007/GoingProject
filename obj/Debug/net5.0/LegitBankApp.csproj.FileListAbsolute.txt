@@ -1,0 +1,16 @@
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\LegitBankApp.exe
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\LegitBankApp.deps.json
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\LegitBankApp.runtimeconfig.json
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\LegitBankApp.runtimeconfig.dev.json
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\LegitBankApp.dll
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\ref\LegitBankApp.dll
+C:\Users\user\Desktop\LegitBankApp\bin\Debug\net5.0\LegitBankApp.pdb
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.AssemblyInfo.cs
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.dll
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\ref\LegitBankApp.dll
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.pdb
+C:\Users\user\Desktop\LegitBankApp\obj\Debug\net5.0\LegitBankApp.genruntimeconfig.cache

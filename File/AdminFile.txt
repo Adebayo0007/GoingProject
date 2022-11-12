@@ -1,0 +1,4 @@
+FIRSTNAME^^^LASTNAME^^^EMAIL^^^AGE^^^ADDRESS
+Abdullah^^^Adebayo^^^ABDUL@GMAIL.COM^^^17^^^ABDUL@GMAIL.COM^^^123^^^10,Abayomi street^^^Male^^^ZENITH/ADMIN-174/Abd0
+Adebay^^^Abdullah^^^17^^^10,ABAYOMI STREET^^^123^^^ddfjk^^^male^^^ZENITH/ADMIN-124/Ade0
+Adebayo^^^Abdullah^^^17^^^ADEBAYO@GMAIL.COM^^^1234^^^10,Abayomijeromu^^^male^^^ZENITH/ADMIN-105/Ade0
