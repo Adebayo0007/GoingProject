@@ -1,0 +1,6 @@
+FirstName^^^LastName^^^AccountNumber^^^Email^^^Password^^^PhoneNumbe^^^Address^^^gender^^^Pin^^^AccountType
+Adebayo^^^Abdullah^^^6501980100^^^ADEBAYO@GMAIL.COM^^^1234^^^08060619772^^^10,Abayomi jeromu street^^^male^^^1234^^^Business account
+Adebayo^^^Abdullah^^^3248720100^^^ADEBAYO@GMAIL.COM^^^Ade123^^^08060619112^^^10,Abayomi jeromu street^^^male^^^1234^^^Savings account
+Adebayo^^^Abdullah^^^3978230100^^^ADEBAYO@GMAIL.COM^^^Ade123^^^08060619772^^^10,Abayomi jeromu street^^^male^^^1234^^^Current account
+Adebayo^^^Abdullai^^^3626480100^^^ADEBAYO@GMAIL.COM^^^Ade123^^^08060619772^^^10,Abayomi street^^^male^^^1234^^^Savings account
+Adebayo^^^Abdullahi^^^5436170100^^^ADEBAYO@GMAIL.COM^^^Ade123^^^08060619772^^^10,Abayomi street^^^male^^^1234^^^Savings account

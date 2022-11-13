@@ -1,5 +1,6 @@
 ﻿using System;
 using LegitBankApp.Menu;
+using LegitBankApp.Model;
 
 namespace LegitBankApp
 {
@@ -33,8 +34,10 @@ Console.WriteLine($"\n__________________________________________________________
             var viewMenu = new ViewMenu();
             viewMenu.OverAll();
 
-            // var customerMenu = new CustomerMenu();
-            // customerMenu.CreateCustomerMenu();
+            
+
+
+
 
             
             

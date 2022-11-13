@@ -21,7 +21,6 @@ namespace LegitBankApp.Model
             this._age = age;
             this._email = email;
             this._password = password;
-            this._accountNumber = phoneNumber;
             this._address = address;
             this._gender = gender;
             this._accountType = accountType;
@@ -33,14 +32,14 @@ namespace LegitBankApp.Model
             {
                 Random random = new Random();
                 string preTest =_customerRegNum.ToString();
-                string customerAccountNumber = $"{random.Next(300,700)}{random.Next(100, 900).ToString()}00{_pin[3]}0";
+                string customerAccountNumber = $"{random.Next(300,700)}{random.Next(100, 900).ToString()}0100";
                 return customerAccountNumber;
 
             }
 
             public  string WriteToCustomerFile()
             {
-                return $"{_firstName}^^^{_lastName}^^^{_age}^^^{_email.ToUpper()}^^^{_password}^^^{_phoneNumber}^^^{_address}^^^{_gender}^^^{_pin}^^^{_accountType}";
+                return $"{_firstName}^^^{_lastName}^^^{_accountNumber}^^^{_email.ToUpper()}^^^{_password}^^^{_phoneNumber}^^^{_address}^^^{_gender}^^^{_pin}^^^{_accountType}";
             }
 
         public static Customer ConvertToCustomer(string customerDataFromText)

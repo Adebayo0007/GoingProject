@@ -23,7 +23,7 @@ namespace LegitBankApp.Menu
                 break;
 
                  case 2:
-                //  LoginAdminMenu();
+                LogCustomerMenu();
                 break;
             }
         }

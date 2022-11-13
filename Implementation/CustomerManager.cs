@@ -14,7 +14,7 @@ namespace LegitBankApp.Implementations
         {
            Customer.listOfCustomer.Add(new Customer(firstName,lastName,age,email,password,phoneNumber,address,gender,pin,accountType));
             Customer customer = new Customer(firstName,lastName,age,email,password,phoneNumber,address,gender,pin,accountType);
-            System.Console.WriteLine($"<<<<<Your Account Number is is: {customer._accountNumber}>>>>>");
+            System.Console.WriteLine($"<<<<<Your Account Number is : {customer._accountNumber}>>>>>");
             //_data = $"{firstName}^^^{lastName}^^^{age}^^^{email}^^^{password}^^^{phoneNumber}^^^{address}^^^{gender}^^^{ad._staffID}";
                using (StreamWriter streamWriter = new StreamWriter(_linkFile1, append: true))
             {

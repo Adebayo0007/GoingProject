@@ -723,7 +723,7 @@ namespace LegitBankApp.Menu
                      string refNum = " ";
 
                         _iTransactionManager.CreateWithdrawal(firstName,lastName,age,email,passWord,number,address,gender,pin1,accountType,balance,withdraw,depo,airtime,acc,time,refNum);
-                        System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {withdraw}\n\tFrom: {acc}\n\tDate: {time}");
+                        System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {withdraw}\n\tFrom: {acc}\n\tYour balance is: {Transaction._accountBalance}\n\tDate: {time}");
 
 
 
@@ -746,8 +746,7 @@ namespace LegitBankApp.Menu
                     Console.Write("\tEnter your deposit amount:");
                     double depo;
                      double.TryParse(Console.ReadLine(), out depo);
-                     System.Console.Write("To:");
-                     string reciever = Console.ReadLine();
+                    
                      string acc;
                      do
                      {
@@ -767,7 +766,7 @@ namespace LegitBankApp.Menu
                      string refNum = " ";
 
                         _iTransactionManager.CreateDeposit(firstName,lastName,age,email,passWord,number,address,gender,pin1,accountType,balance,withdraw,depo,airtime,acc,time,refNum);
-                        System.Console.WriteLine($"\n\tTnx: Credit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {depo}\n\tTo: {reciever}\n\tDate: {time}");
+                        System.Console.WriteLine($"\n\tTnx: Credit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {depo}\n\tYour balance is: {Transaction._accountBalance}\n\tDate: {time}");
 
 
                 }
@@ -810,7 +809,7 @@ namespace LegitBankApp.Menu
                      string refNum = " ";
 
                         _iTransactionManager.CreateAirtime(firstName,lastName,age,email,passWord,number,address,gender,pin1,accountType,balance,withdraw,depo,airtime,acc,time,refNum);
-                        System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {airtime}\n\tTo: {reciever}\n\tDate: {time}");
+                        System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {airtime}\n\tTo: {reciever}\n\tYour balance is: {Transaction._accountBalance}\n\tDate: {time}");
 
 
                 }
