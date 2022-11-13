@@ -1,4 +1,5 @@
 ﻿using System;
+using LegitBankApp.Implementations;
 using LegitBankApp.Menu;
 using LegitBankApp.Model;
 
@@ -31,8 +32,13 @@ Console.WriteLine($"\n__________________________________________________________
             
 
 
-            var viewMenu = new ViewMenu();
-            viewMenu.OverAll();
+            // var viewMenu = new ViewMenu();
+            // viewMenu.OverAll();
+
+            var admin = new AdminManager();
+            admin.QueryWriting();
+
+           
 
             
 

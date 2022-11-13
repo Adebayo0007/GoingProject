@@ -61,7 +61,7 @@ namespace LegitBankApp.Menu
             var gender = Console.ReadLine();
             Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Registration Completed->>>>> ");
 
-            _iAdminManager.CreateAdmin(firstName, lastName, email, age, email, passWord,address,gender);
+            _iAdminManager.CreateAdmin(firstName, lastName, age, email, passWord, number,address,gender);
             System.Console.WriteLine("\n\tEnter 1 to Login\n\tEnter 0 to opt out");
             int x;
             int.TryParse(Console.ReadLine(),out x);
