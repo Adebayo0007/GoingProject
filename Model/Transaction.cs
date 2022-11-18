@@ -5,7 +5,7 @@ namespace LegitBankApp
 {
     public class Transaction 
     {
-        public static double _accountBalance   = 5000;
+        public static double _accountBalance   =5000;
         public static double _withdrawalAmount {get; set;}
         public static double _depositAmount    {get; set;}
         public static double _airtimeAmount    {get; set;}

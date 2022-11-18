@@ -57,7 +57,7 @@ namespace LegitBankApp.Menu
             var address = Console.ReadLine();
             Console.Write("\tEnter your gender: ");
             var gender = Console.ReadLine();
-            var customer = new Customer(" "," "," "," "," "," "," "," "," "," ");
+            var customer = new Customer(" "," "," "," "," "," "," "," "," "," ",0);
             string pin;
             string accType;
              do

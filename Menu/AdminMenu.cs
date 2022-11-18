@@ -270,7 +270,7 @@ public void LogInManagingDirector()
                     }
                     if(choice == 1)
                     {
-                        System.Console.WriteLine("\n\tEnter 1 to Create Customer\n\tEnter 2 to Delete Customer\n\tEnter 3 to Login Customer\n\tEnter 4 to Get Customer Information using mail\n\tEnter 5 to Update Admin Information with your existing account Number");
+                        System.Console.WriteLine("\n\tEnter 1 to Create Customer\n\tEnter 2 to Delete Customer\n\tEnter 3 to Login Customer\n\tEnter 4 to Get Customer Information using account number\n\tEnter 5 to Update Admin Information with your existing account Number");
                         int check;
                         int.TryParse(Console.ReadLine(), out check);
                         switch(check)
@@ -355,7 +355,7 @@ public void LogInManagingDirector()
             var address = Console.ReadLine();
             Console.Write("\tEnter your gender: ");
             var gender = Console.ReadLine();
-            var customer = new Customer(" "," "," "," "," "," "," "," "," "," ");
+            var customer = new Customer(" "," "," "," "," "," "," "," "," "," ",0);
             string pin;
             string accType;
              do
@@ -702,152 +702,45 @@ public void LogInManagingDirector()
                    
                     public void GetTransactionMenu()
                     {
-                        System.Console.WriteLine("Enter your ref number to delete transaction");
+                        System.Console.WriteLine("Enter your ref number to Get transaction");
                         string refNum = Console.ReadLine();
+                        System.Console.WriteLine("Enter your account number");
+                        string acc = Console.ReadLine();
                         var tra = _iTransactionManager.GetTransaction(refNum);
-                        var cus = new Customer(" "," "," "," "," "," "," "," "," "," ");
+                        var cus = new Customer(" "," "," "," "," "," "," "," "," "," ",0);
                         if(tra != null)
                         {
-                            System.Console.WriteLine($"\nAccount Number= {cus._accountNumber}\tAccoun Balance= {Transaction._accountBalance}\tWithdrawal Amount= {Transaction._withdrawalAmount}\tDeposit Amoun= {Transaction._depositAmount}\tAirtime Amount= {Transaction._airtimeAmount}\tRef num= {Transaction._dateTime}");
+                            System.Console.WriteLine($"\nAccount Number= {acc}\tAccoun Balance= {Transaction._accountBalance}\tWithdrawal Amount= {Transaction._withdrawalAmount}\tDeposit Amoun= {Transaction._depositAmount}\tAirtime Amount= {Transaction._airtimeAmount}\tRef num = {Transaction._dateTime}");
                         }
                     }
 
+                    public void DeleteTransaction()
+                    {
+                        System.Console.WriteLine("Enter the ref number to delete transaction");
+                        string rep = Console.ReadLine();
+                        _iTransactionManager.DeleteTransaction(rep);
+                    }
 
                     public void ManageTransaction()
                     {
-                          Console.WriteLine(@"
-
-                        ################################################################################
-                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
-                        ####________________________________________________________________________####
-                        ####                         Welcome To ZenithBank   !                      ####
-                        ####------------------------------------------------------------------------####
-                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
-                        ################################################################################");
-                        Console.WriteLine("\n\tHome >> Login >> Admin >>");
-                        Console.WriteLine("\n\tEnter 0 to opt out\n\tEnter 1 to Create withdrawal\n\tEnter 2 to Create Deposit\n\tEnter 3 to Create airtime\n\tEnter 4 to Delete withdrawal\n\tEnter 5 to Delete deposit\n\tEnter 6 to Delete airtime\n\tEnter 7 to get Transaction");
+                        System.Console.WriteLine("\n\tEnter 1 to Get Transaction\n\tEnter 2 to Delete Transaction");
                         int choice;
                         int.TryParse(Console.ReadLine(),out choice);
                         switch(choice)
                         {
-                            case 0:
-                            System.Console.WriteLine("Closing Application...");
-                            break;
                             case 1:
-                             CreateWithdrawalMenu();
-                             Console.WriteLine("Enter 1 to go back to login menu");
-                                int test; 
-                                int.TryParse(Console.ReadLine(),out test);
-                                if(test ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
+                            GetTransactionMenu();
                             break;
 
                             case 2:
-                            CreateDepositMenu();
-                            Console.WriteLine("Enter 1 to go back to login menu");
-                                int test1; 
-                                int.TryParse(Console.ReadLine(),out test1);
-                                if(test1 ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
+                            DeleteTransaction();
                             break;
-
-                            case 3:
-                            CreateAirtimeMenu();
-                            Console.WriteLine("Enter 1 to go back to login menu");
-                                int test2; 
-                                int.TryParse(Console.ReadLine(),out test2);
-                                if(test2 ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-                           
-
-                            case 4:
-                            System.Console.WriteLine("Enter the transaction ref number");
-                            string refNum = Console.ReadLine();
-                            _iTransactionManager.DeleteWithdrawal(refNum);
-                            Console.WriteLine("Enter 1 to go back to login menu");
-                                int test3; 
-                                int.TryParse(Console.ReadLine(),out test3);
-                                if(test3 ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 5:
-                            System.Console.WriteLine("Enter the transaction ref number");
-                            string refNum2 = Console.ReadLine();
-
-                            _iTransactionManager.DeleteDeposite(refNum2);
-                            Console.WriteLine("Enter 1 to go back to login menu");
-                                int test4; 
-                                int.TryParse(Console.ReadLine(),out test4);
-                                if(test4 ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 6:
-                            System.Console.WriteLine("Enter the transaction ref number");
-                            string refNum3 = Console.ReadLine();
-                            _iTransactionManager.DeleteAirtime(refNum3);
-                            Console.WriteLine("Enter 1 to go back to login menu");
-                                int test5; 
-                                int.TryParse(Console.ReadLine(),out test5);
-                                if(test5 ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 7:
-                            GetTransactionMenu();
-                            Console.WriteLine("Enter 1 to go back to login menu");
-                                int test6; 
-                                int.TryParse(Console.ReadLine(),out test6);
-                                if(test6 ==1 )
-                                {
-                                    LogIn();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
+                            
                         }
-
                     }
+
+
+                   
     }
 
 }

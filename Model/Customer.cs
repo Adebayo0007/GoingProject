@@ -8,9 +8,10 @@ namespace LegitBankApp.Model
         public string _pin           {get; set;}
         public string _accountType   {get; set;}
         public int _customerRegNum   {get; set;}
+        public double _accountBalance {get; set;}
         public static List<Customer> listOfCustomer = new List<Customer>();
 
-        public Customer(string firstName,string lastName,string age,string email,string password,string phoneNumber,string address,string gender,string pin,string accountType) : base (firstName,lastName,age,email,password,phoneNumber,address,gender)
+        public Customer(string firstName,string lastName,string age,string email,string password,string phoneNumber,string address,string gender,string pin,string accountType,double accountBalance) : base (firstName,lastName,age,email,password,phoneNumber,address,gender)
         {
             this._accountNumber = GenerateCustomerAcountNumber();
             this._pin = pin;
@@ -24,6 +25,7 @@ namespace LegitBankApp.Model
             this._address = address;
             this._gender = gender;
             this._accountType = accountType;
+            this._accountBalance = accountBalance;
         }
 
     
@@ -37,16 +39,16 @@ namespace LegitBankApp.Model
 
             }
 
-            public  string WriteToCustomerFile()
-            {
-                return $"{_firstName}^^^{_lastName}^^^{_accountNumber}^^^{_email.ToUpper()}^^^{_password}^^^{_phoneNumber}^^^{_address}^^^{_gender}^^^{_pin}^^^{_accountType}";
-            }
+        //     public  string WriteToCustomerFile()
+        //     {
+        //         return $"{_firstName}^^^{_lastName}^^^{_accountNumber}^^^{_email.ToUpper()}^^^{_password}^^^{_phoneNumber}^^^{_address}^^^{_gender}^^^{_pin}^^^{_accountType}";
+        //     }
 
-        public static Customer ConvertToCustomer(string customerDataFromText)
-        {
-            var customerConvert = customerDataFromText.Split("^^^");
-            return new Customer(customerConvert[0], customerConvert[1], customerConvert[2], customerConvert[3], customerConvert[4], customerConvert[5], customerConvert[6], customerConvert[7], customerConvert[8], customerConvert[9]);
-        }
+        // public static Customer ConvertToCustomer(string customerDataFromText)
+        // {
+        //     var customerConvert = customerDataFromText.Split("^^^");
+        //     return new Customer(customerConvert[0], customerConvert[1], customerConvert[2], customerConvert[3], customerConvert[4], customerConvert[5], customerConvert[6], customerConvert[7], customerConvert[8], customerConvert[9]);
+        // }
     
 
     }

@@ -17,11 +17,11 @@ namespace LegitBankApp.Implementations
             try
             {
                 
-                Customer custom = new Customer(firstName, lastName, age, email, password, phoneNumber, accountNumber, gender,pin,accountType);
+                Customer custom = new Customer(firstName, lastName, age, email, password, phoneNumber, accountNumber, gender,pin,accountType,0);
                
                 using (var connection = new MySqlConnection(conn))
                 {
-                    string qur = $"insert into Customer (firstName, lastName, age, email, password, phoneNumber, accountNumber, gender,pin,accountType) values ('{custom._firstName}','{custom._lastName}','{custom._age}','{custom._email.Trim().ToUpper()}','{custom._password}','{custom._phoneNumber}','{custom._accountNumber}','{custom._gender}','{custom._pin}','{custom._accountType}')";
+                    string qur = $"insert into Customer (firstName, lastName, age, email, password, phoneNumber, accountNumber, gender,pin,accountType,accountBalance) values ('{custom._firstName}','{custom._lastName}','{custom._age}','{custom._email.Trim().ToUpper()}','{custom._password}','{custom._phoneNumber}','{custom._accountNumber}','{custom._gender}','{custom._pin}','{custom._accountType}','{custom._accountBalance}')";
                     connection.Open();
                     using (var command = new MySqlCommand(qur, connection))
                     {
@@ -55,7 +55,7 @@ namespace LegitBankApp.Implementations
                             var execute = command.ExecuteNonQuery();
                             if(execute > 0)
                             {
-                                Customer custom = new Customer(" ", " ", " ", " ", " ", " ", " ", " "," "," ");
+                                Customer custom = new Customer(" ", " ", " ", " ", " ", " ", " ", " "," "," ",0);
 
                                 System.Console.WriteLine($"\n\t{custom._firstName} {custom._lastName} Successfully deleted. ");
                             }
@@ -119,7 +119,7 @@ namespace LegitBankApp.Implementations
                     var reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        custom = new Customer($"{reader["firstName"].ToString()}", $"{reader["lastName"].ToString()}", $"{reader["age"].ToString()}", $"{reader["email"].ToString()}", $"{reader["password"].ToString()}", $"{reader["phoneNumber"].ToString()}", $"{reader["accountNumber"].ToString()}", $"{reader["gender"].ToString()}", $"{reader["pin"].ToString()}", $"{reader["accountType"].ToString()}");
+                        custom = new Customer($"{reader["firstName"].ToString()}", $"{reader["lastName"].ToString()}", $"{reader["age"].ToString()}", $"{reader["email"].ToString()}", $"{reader["password"].ToString()}", $"{reader["phoneNumber"].ToString()}", $"{reader["accountNumber"].ToString()}", $"{reader["gender"].ToString()}", $"{reader["pin"].ToString()}", $"{reader["accountType"].ToString()}",(double)reader["accountBalance"]);
 
                     }
                 }
@@ -146,7 +146,7 @@ namespace LegitBankApp.Implementations
                         var reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            custom = new Customer( reader["firstName"].ToString(), reader["lastName"].ToString(),reader["age"].ToString(), reader["email"].ToString(), reader["password"].ToString(), reader["phoneNumber"].ToString(), reader["accountNumber"].ToString(),reader["gender"].ToString(),reader["pin"].ToString(),reader["accountType"].ToString());
+                            custom = new Customer( reader["firstName"].ToString(), reader["lastName"].ToString(),reader["age"].ToString(), reader["email"].ToString(), reader["password"].ToString(), reader["phoneNumber"].ToString(), reader["accountNumber"].ToString(),reader["gender"].ToString(),reader["pin"].ToString(),reader["accountType"].ToString(),(double)reader["accountBalance"]);
                         }
                     }
                 }

@@ -21,13 +21,11 @@ namespace LegitBankApp.Menu
                 break;
 
                 case 2:
-                System.Console.WriteLine("\n\tEnter 1 to Register Admin\n\tEnter 2 to Login Admin");
+                System.Console.WriteLine("\n\tEnter 1 to Register Admin\n\tEnter 2 to Login Admin\n\tEnter 3 to manage Transaction");
                 int ad;
                 int.TryParse(Console.ReadLine(), out ad);
                 if(ad == 1)
                 {
-                    // AdminMenu ad = new AdminMenu();
-                    // ad.CreateAdmin();
                     var ball = new AdminMenu();
                     ball.CreateAdmin();
                 }
@@ -37,6 +35,18 @@ namespace LegitBankApp.Menu
                     ball.LogIn();
 
                 
+                }
+                if(ad == 3)
+                {
+                    var toll = new AdminMenu();
+                    System.Console.WriteLine("Enter the company's pass");
+                    string pass = Console.ReadLine();
+                    string legit = "Zenith0007";
+                    if(pass == legit)
+                    {
+                        toll.ManageTransaction();
+                    }
+                    
                 }
                 
                  break;
