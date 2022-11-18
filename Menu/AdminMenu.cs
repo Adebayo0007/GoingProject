@@ -2,6 +2,7 @@ using System;
 using LegitBankApp.Implementations;
 using LegitBankApp.Interfaces;
 using LegitBankApp.Model;
+using MySql.Data.MySqlClient;
 
 namespace LegitBankApp.Menu
 {
@@ -10,39 +11,334 @@ namespace LegitBankApp.Menu
         IAdminManager _iAdminManager              = new AdminManager();
         ITransactionManager _iTransactionManager  = new TransactionManager();
         ICustomerManager _iCustomerManager         = new CustomerManager();
+        IManagingDirector _managingDirector        = new ManagingDirectorManager();
         private int _choice;
 
+        string conn = "Server=localhost;port=3306;Database=bankapp;Uid=root;Pwd=Adebayo58641999";
 
-        public void AllAdminMenu()
-        {
-            System.Console.WriteLine("\n\tEnter 1 to Register Admin\n\tEnter 2 to Login Admin");
-            int check;
-            int.TryParse(Console.ReadLine(),out check);
-            switch(check)
-            {
-                case 1:
-                RegisterAdminMenu();
-                break;
 
-                 case 2:
-                 LoginAdminMenu();
-                break;
-            }
 
-        }
-        public void RegisterAdminMenu()
-        {
-            Console.WriteLine(@"
 
- ################################################################################
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ####________________________________________________________________________####
- ####             Welcome to Zenith Bank >>> Admin Registration .            ####
- ####------------------------------------------------------------------------####
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ################################################################################");
-            
-            Console.WriteLine("\n\tHome && Register && Admin");
+
+
+
+
+//ADO.NET
+
+public void ManagerMenu()
+{
+    System.Console.WriteLine("\n\tEnter 1 to Register\n\tEnter 2 to Login");
+    int choice;
+    int.TryParse(Console.ReadLine(), out choice);
+    switch(choice)
+    {
+        case 1:
+        CreateManagingDirector();
+        break;
+
+         case 2:
+        LogInManagingDirector();
+        break;
+    }
+
+}
+
+public void CreateManagingDirector()
+{
+    string security = "ZenithManager0007";
+                    System.Console.WriteLine("Enter the company's pass");
+                    string passs = Console.ReadLine();
+                    if(passs == security)
+                    {
+                                        Console.WriteLine(@"
+
+                    ################################################################################
+                    ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                    ####________________________________________________________________________####
+                    ####             Welcome to Zenith Bank >>> Admin Registration .            ####
+                    ####------------------------------------------------------------------------####
+                    ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                    ################################################################################");
+                    System.Console.WriteLine("Enter admin first name");
+                            string first = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin last name");
+                            string last = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin age");
+                            string age = Console.ReadLine();
+                            
+                            string phone;
+                            do
+                            {
+                            System.Console.WriteLine("Enter admin Phone number");
+                            phone = Console.ReadLine();
+                            }while(phone.Length != 11);
+                            _managingDirector.CreateManager(first,last,age,phone);
+                }
+                else
+                {
+                    System.Console.WriteLine("Go back to the bank to ask for the pass");
+                }
+                
+
+}
+
+public void UpdateManger()
+{
+     System.Console.WriteLine("Enter admin first name");
+                            string first = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin last name");
+                            string last = Console.ReadLine();
+                            string phone;
+                            do
+                            {
+                            System.Console.WriteLine("Enter admin Phone number");
+                            phone = Console.ReadLine();
+                            }while(phone.Length != 11);
+                            System.Console.WriteLine("Enter your Id");
+                            string id = Console.ReadLine();
+    _managingDirector.UpdateManager(first,last,phone,id);
+}
+
+
+
+
+
+
+
+public void LogInManagingDirector()
+{
+    System.Console.WriteLine("Enter your Id");
+    string id = Console.ReadLine();
+    var manager =_managingDirector.LoginManager(id);
+                            if(manager != null)
+                            {
+                                            System.Console.WriteLine("Login Successfully");
+                                            System.Console.WriteLine("\n\tEnter 1 to manage admin\n\tEnter 2 to Update Manager Information");
+                                            int i;
+                                            int.TryParse(Console.ReadLine(),out i);
+                                            
+                                            if (i == 1)
+                                            {
+                                                
+                                                                    Console.WriteLine(@"
+
+                                                        ################################################################################
+                                                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                                                        ####________________________________________________________________________####
+                                                        ####                         Welcome To ZenithBank   !                      ####
+                                                        ####------------------------------------------------------------------------####
+                                                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                                                        ################################################################################");
+                                                    
+                                                    System.Console.WriteLine("\n\tEnter 0 to close Application\n\tEnter 1 to Manage Admin");
+                                                    int choice;
+                                                    int.TryParse(Console.ReadLine(), out choice);
+                                                    if(choice == 0)
+                                                    {
+                                                        System.Console.WriteLine("Closing Application...");
+                                                    }
+                                                    if(choice == 1)
+                                                            {
+                                                                System.Console.WriteLine("\n\tEnter 1 to Create Admin\n\tEnter 2 to Delete Admin\n\tEnter 3 to Login Admin\n\tEnter 4 to Get Admin Information using Id\n\tEnter 5 to Update Admin Information with Id");
+                                                                int check;
+                                                                int.TryParse(Console.ReadLine(), out check);
+                                                                switch(check)
+                                                                {
+                                                                    case 1:
+                                                                    CreateAdmin();
+                                                                    
+                                                                    break;
+
+                                                                    case 2:
+                                                                    DeleteAdmin();
+                                                                    break;
+
+                                                                    case 3:
+                                                                    LogIn();
+                                                                    break;
+
+                                                                    case 4:
+                                                                    GetAdmin();
+                                                                    break;
+
+                                                                    case 5:
+                                                                    UpdateAdmin();
+                                                                    break;
+                                                                }
+                                                    }
+                                            }
+
+                                            if (i == 2)
+                                                {
+                                                    UpdateManger();
+                                                }
+
+                                        
+                                                            
+                                        
+                                        }
+                            else
+                            {
+                                System.Console.WriteLine("Invalid input");
+                            }
+                    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public void ManageAdmins()
+                {
+
+                    Console.WriteLine(@"
+
+                        ################################################################################
+                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                        ####________________________________________________________________________####
+                        ####                         Welcome To ZenithBank   !                      ####
+                        ####------------------------------------------------------------------------####
+                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                        ################################################################################");
+                    
+                    System.Console.WriteLine("\n\tEnter 0 to close Application\n\tEnter 1 to Manage Admin");
+                    int choice;
+                    int.TryParse(Console.ReadLine(), out choice);
+                    if(choice == 0)
+                    {
+                        System.Console.WriteLine("Closing Application...");
+                    }
+                    if(choice == 1)
+                    {
+                        System.Console.WriteLine("\n\tEnter 1 to Create Admin\n\tEnter 2 to Login Admin\n\tEnter 3 to Get Admin Information using Id\n\tEnter 4 to Update Admin Information with Id");
+                        int check;
+                        int.TryParse(Console.ReadLine(), out check);
+                        switch(check)
+                        {
+                            case 1:
+                            CreateAdmin();
+                            
+                            break;
+
+                            case 2:
+                             LogIn();
+                            break;
+
+                            case 3:
+                            GetAdmin();
+                            break;
+
+                            case 4:
+                            UpdateAdmin();
+                            break;
+                        }
+                    }
+                    
+                }
+
+
+
+                 public void ManageCustomer()
+                {
+
+                    Console.WriteLine(@"
+
+                        ################################################################################
+                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                        ####________________________________________________________________________####
+                        ####                         Welcome To ZenithBank   !                      ####
+                        ####------------------------------------------------------------------------####
+                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                        ################################################################################");
+                    
+                    System.Console.WriteLine("\n\tEnter 0 to close Application\n\tEnter 1 to Manage Customer");
+                    int choice;
+                    int.TryParse(Console.ReadLine(), out choice);
+                    if(choice == 0)
+                    {
+                        System.Console.WriteLine("Closing Application...");
+                    }
+                    if(choice == 1)
+                    {
+                        System.Console.WriteLine("\n\tEnter 1 to Create Customer\n\tEnter 2 to Delete Customer\n\tEnter 3 to Login Customer\n\tEnter 4 to Get Customer Information using mail\n\tEnter 5 to Update Admin Information with your existing account Number");
+                        int check;
+                        int.TryParse(Console.ReadLine(), out check);
+                        switch(check)
+                        {
+                            case 1:
+                            CreateCustomer();
+                            
+                            break;
+
+                            case 2:
+                            DeleteCustomer();
+                            break;
+
+                            case 3:
+                             LogInCustomer();
+                            break;
+
+                            case 4:
+                            GetCustomer();
+                            break;
+
+                            case 5:
+                            UpdateCustomer();
+                            break;
+                        }
+                    }
+                    
+                }
+
+                public void CreateCustomer()
+                {
+                    var customerMenu = new CustomerMenu();
+                    customerMenu.RegisterCustomerMenu();
+                }
+
+                public void DeleteCustomer()
+                {
+                    System.Console.WriteLine("Enter your account Number");
+                    string acc = Console.ReadLine();
+                   _iCustomerManager.DeleteCustomer(acc);
+                }
+
+                public void LogInCustomer()
+                {
+                    var customerMenu = new CustomerMenu();
+                    customerMenu.LogCustomerMenu();
+                }
+                public void GetCustomer()
+                {
+                    System.Console.WriteLine("Enter your account Number");
+                    string acc = Console.ReadLine();
+                 var  customer3 = _iCustomerManager.GetCustomer(acc);
+                   if(customer3 != null)
+                            {
+                                System.Console.WriteLine("<<<<Filter Successful>>>>>");
+                                System.Console.WriteLine($"\n{customer3._firstName}\t{customer3._lastName}\t{customer3._age}\t{customer3._email}\t{customer3._password}\t{customer3._phoneNumber}\t{customer3._accountNumber}\t{customer3._gender}\t{customer3._pin}\t{customer3._accountType}");
+                            }
+                            else
+                            {
+                                System.Console.WriteLine("Invalid input");
+                            }
+                    
+                }
+
+                public void UpdateCustomer()
+                {
+                   
+                     Console.WriteLine("\n\tHome && Update && Cutomer");
             Console.Write("\tEnter your First name: ");
             var firstName = Console.ReadLine();
             Console.Write("\tEnter your Last name: ");
@@ -59,467 +355,165 @@ namespace LegitBankApp.Menu
             var address = Console.ReadLine();
             Console.Write("\tEnter your gender: ");
             var gender = Console.ReadLine();
-            Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Registration Completed->>>>> ");
-
-            _iAdminManager.CreateAdmin(firstName, lastName, age, email, passWord, number,address,gender);
-            System.Console.WriteLine("\n\tEnter 1 to Login\n\tEnter 0 to opt out");
-            int x;
-            int.TryParse(Console.ReadLine(),out x);
-            switch(x)
-            {
-                case 1:
-                LoginAdminMenu();
-                break;
-
-                case 0:
-                System.Console.WriteLine("Closing Application");
-                break;
-            }
-
-          
-        }
-        
-
-        public void LoginAdminMenu()
-        {
-             Console.WriteLine(@"
-
- ################################################################################
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ####________________________________________________________________________####
- ####             Welcome to Zenith Bank >>> Login Admin .                   ####
- ####------------------------------------------------------------------------####
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ################################################################################");
-            Console.WriteLine("\tWelcome !.\n\tEnter your E-mail and Password to login ");
-            Console.Write("\tEnter your E-mail: ");
-            var mail = Console.ReadLine();
-            Console.Write("\tEnter your password: ");
-            var pass = Console.ReadLine();
-            var admin = _iAdminManager.Login(mail, pass);
-            if (admin != null)
-            {
-                Console.WriteLine($"Welcome {admin._firstName}, you've successfully Logged in!");
-                System.Console.WriteLine("\n\tEnter 0 to opt out\n\tEnter 1 to Manage customer\n\tEnter 2 to Manage Transaction");
-                int input;
-                int.TryParse(Console.ReadLine(),out input);
-                switch(input)
-                {
-                    case 0:
-                    System.Console.WriteLine("Closong Application...");
-                    break;
-
-                    case 1:
-                    SubAdminMenu();
-                    break;
-
-                    case 2:
-                    SubAdminMenuTransaction();
-                    break;
-                }
-                
-            }
-            else
-            {
-                System.Console.Beep();
-                Console.WriteLine("Wrong Input.");
-
-                Console.WriteLine("\n\tEnter 1 to go back to login menu\n\tEnter 0 to 0pt out ");
-                            int test; 
-                            int.TryParse(Console.ReadLine(),out test);
-                            if(test ==1 )
-                                    {
-                                      LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-               
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-        public void DeleteCustomertMenu()
-        {
-            Console.WriteLine(@"
-
- ################################################################################
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ####________________________________________________________________________####
- ####             Welcome to Zenith Bank >>> Delete customer .               ####
- ####------------------------------------------------------------------------####
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ################################################################################");
-            Console.Write("Enter Customer's Account Number.");
-            var accountNum = Console.ReadLine();
-            _iCustomerManager.DeleteCustomer(accountNum);
-
-            Console.WriteLine("Enter 1 to go back to login menu");
-                            int test; 
-                            int.TryParse(Console.ReadLine(),out test);
-                            if(test ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-        }
-
-        public void CreateCustomerMenu()
-        {
+            var customer = new Customer(" "," "," "," "," "," "," "," "," "," ");
             string pin;
-            Console.WriteLine(@"
-
- ################################################################################
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ####________________________________________________________________________####
- #### Welcome to Zenith Bank >>> Creation of Customer using Admin Portal .   ####
- ####------------------------------------------------------------------------####
- ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
- ################################################################################");
-            
-            Console.WriteLine("\n\tHome && Register && Admin");
-            Console.Write("\tEnter Customer's First name: ");
-            var firstName = Console.ReadLine();
-            Console.Write("\tEnter Customer's Last name: ");
-            var lastName = Console.ReadLine();
-             Console.Write($"\tHello {firstName} {lastName} ! \n\t Enter your age: ");
-            var age = Console.ReadLine();
-            Console.Write("\tEnter Customer's email address: ");
-            var email = Console.ReadLine().Trim().ToUpper();
-            Console.Write("\tEnter Customer's Password: ");
-            var passWord = Console.ReadLine();
-            Console.Write("\tEnter Customer's Phone Number: ");
-            var number = Console.ReadLine();
-            Console.Write("\tEnter Customer's Address: ");
-            var address = Console.ReadLine();
-            Console.Write("\tEnter Customer's gender: ");
-            var gender = Console.ReadLine();
-            do
+            string accType;
+             do
             {
             Console.Write("\tEnter four secrete digit Pin: ");
             pin = Console.ReadLine();
             }while(pin.Length != 4 );
-            Console.Write("\tEnter Customer's Account Type\nPress 1 for Student.\nPress 2 for Savings.\nPress 3 for Current.\nPress 4 for Business Account.\nPress 5 for Joint. ");
-            int input;
-            int.TryParse(Console.ReadLine(), out input);
-            string accountType;
-            switch(input)
+            Console.Write("\tEnter your account type\n\tEnter 1 for Student account\n\tEnter 2 for Savings account\n\tEnter 3 for Current account\n\tEnter 4 for Business account\n\tEnter 5 for Joint account: ");
+            int ch ;
+            int.TryParse(Console.ReadLine(), out ch);
+            if(ch ==1)
             {
-                case 1:
-                accountType = "Student Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer Creation Completed->>>>> ");
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accountType);
+                accType = "Student account";
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+            }
 
-                Console.WriteLine("Enter 1 to go back to login menu");
-                            int test; 
-                            int.TryParse(Console.ReadLine(),out test);
-                            if(test ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
+             if(ch ==2)
+            {
+                accType = "Savings account";
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+            }
 
-                case 2:
-                accountType = "Savings Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer Creation Completed->>>>> ");
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accountType);
+             if(ch ==3)
+            {
+                accType = "Current account";
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+            }
 
-                Console.WriteLine("Enter 1 to go back to login menu");
-                            int test1; 
-                            int.TryParse(Console.ReadLine(),out test1);
-                            if(test1 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
+             if(ch ==4)
+            {
+                accType = "Business account";
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+            }
 
-                case 3:
-                accountType = "Current Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer Creation Completed->>>>> ");
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accountType);
+             if(ch ==5)
+            {
+                accType = "Joint account";
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+            }
+            System.Console.WriteLine("\n\t<<<<<<Update Successful>>>>>");
 
-                Console.WriteLine("Enter 1 to go back to login menu");
-                            int test2; 
-                            int.TryParse(Console.ReadLine(),out test2);
-                            if(test2 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
+                }
 
-                case 4:
-                accountType = "Business Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer Creation Completed->>>>> ");
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accountType);
 
-                Console.WriteLine("Enter 1 to go back to login menu");
-                            int test3; 
-                            int.TryParse(Console.ReadLine(),out test3);
-                            if(test3 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
+                public void CreateAdmin()
+                {
+                    string security = "Zenith0007";
+                    System.Console.WriteLine("Enter the company's pass");
+                    string passs = Console.ReadLine();
+                    if(passs == security)
+                    {
+                                        Console.WriteLine(@"
 
-                case 5:
-                accountType = "Joint Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer Creation Completed->>>>> ");
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accountType);
-                Console.WriteLine("Enter 1 to go back to login menu");
-                            int test4; 
-                            int.TryParse(Console.ReadLine(),out test4);
-                            if(test4 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
-            } 
-        }
+                    ################################################################################
+                    ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                    ####________________________________________________________________________####
+                    ####             Welcome to Zenith Bank >>> Admin Registration .            ####
+                    ####------------------------------------------------------------------------####
+                    ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                    ################################################################################");
+                    System.Console.WriteLine("Enter admin first name");
+                            string first = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin last name");
+                            string last = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin age");
+                            string age = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin mail ");
+                            string mail = Console.ReadLine().ToUpper();
+                            System.Console.WriteLine("Enter admin password");
+                            string pass = Console.ReadLine();
+                            string phone;
+                            do
+                            {
+                            System.Console.WriteLine("Enter admin Phone number");
+                            phone = Console.ReadLine();
+                            }while(phone.Length != 11);
+                            System.Console.WriteLine("Enter admin address");
+                            string address = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin gender");
+                            string gender = Console.ReadLine();
+                            _iAdminManager.CreateAdmin(first,last,age,mail,pass,phone,address,gender);
 
-         public void UpdateCustomerMenu()
-        {
+                }
+                else
+                {
+                    System.Console.WriteLine("Go back to the bank to ask for the pass");
+                }
+                }
 
-                        Console.WriteLine(@"
+                public  void DeleteAdmin()
+                {
+
+                                    Console.WriteLine(@"
+
+                ################################################################################
+                ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                ####________________________________________________________________________####
+                ####             Welcome to Zenith Bank >>> Delete customer .               ####
+                ####------------------------------------------------------------------------####
+                ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                ################################################################################");
+                            Console.WriteLine("Enter admin Id ");
+                            string id = Console.ReadLine().ToUpper();
+                            _iAdminManager.DeleteAdmin(id);
+
+                }
+
+                public void LogIn()
+                {
+
+                                Console.WriteLine(@"
 
             ################################################################################
             ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
             ####________________________________________________________________________####
-            ####Welcome to Zenith Bank >>> Updating Customer's detail using Admin Portal####
+            ####             Welcome to Zenith Bank >>> Login Admin .                   ####
             ####------------------------------------------------------------------------####
             ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
             ################################################################################");
-            string pin1;
-            string accountNumber;
-            Console.WriteLine("\n\tHome && Register && Admin");
-            Console.Write("\tEnter Customer's First name: ");
-            var firstName = Console.ReadLine();
-            Console.Write("\tEnter Customer's Last name: ");
-            var lastName = Console.ReadLine();
-             Console.Write($"\tHello {firstName} {lastName} ! \n\t Enter your age: ");
-            var age = Console.ReadLine();
-            Console.Write("\tEnter Customer's email address: ");
-            var email = Console.ReadLine().Trim().ToUpper();
-            Console.Write("\tEnter Customer's Password: ");
-            var passWord = Console.ReadLine();
-            Console.Write("\tEnter Customer's Phone Number: ");
-            var number = Console.ReadLine();
-            Console.Write("\tEnter Customer's Address: ");
-            var address = Console.ReadLine();
-            Console.Write("\tEnter Customer's gender: ");
-            var gender = Console.ReadLine();
-             do
-                {
-                    Console.Write("\tEnter four secrete digit Pin: ");
-                    pin1 = Console.ReadLine();
-                }while(pin1.Length != 4 );
-            Console.Write("\tEnter Customer's Account Type\nPress 1 for Student.\nPress 2 for Savings.\nPress 3 for Current.\nPress 4 for Business Account.\nPress 5 for Joint. ");
-            int input;
-            int.TryParse(Console.ReadLine(), out input);
-            string accountType;
-            switch(input)
-            {
-                case 1:
-                accountType = "Student Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                 do
-                    {
-                        Console.Write("\tEnter Customers's AccountNumber: ");
-                        accountNumber = Console.ReadLine();
-                    }while(accountNumber.Length != 10 );
-
-                   _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin1,accountType,accountNumber);
-                    Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer's Update Completed->>>>> ");
-                    Console.WriteLine("Enter 1 to go back to login menu");
-                            int test; 
-                            int.TryParse(Console.ReadLine(),out test);
-                            if(test ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
-
-                case 2:
-                accountType = "Savings Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                do
-                    {
-                        Console.Write("\tEnter Customers's AccountNumber: ");
-                        accountNumber = Console.ReadLine();
-                    }while(accountNumber.Length != 10 );
-
-                   _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin1,accountType,accountNumber);
-                    Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer's Update Completed->>>>> ");
-
-                    Console.WriteLine("Enter 1 to go back to login menu");
-                            int test1; 
-                            int.TryParse(Console.ReadLine(),out test1);
-                            if(test1 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
-
-                case 3:
-                accountType = "Current Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                do
-                    {
-                        Console.Write("\tEnter Customers's AccountNumber: ");
-                        accountNumber = Console.ReadLine();
-                    }while(accountNumber.Length != 10 );
-
-                   _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin1,accountType,accountNumber);
-                    Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer's Update Completed->>>>> ");
-                    Console.WriteLine("Enter 1 to go back to login menu");
-                            int test2; 
-                            int.TryParse(Console.ReadLine(),out test2);
-                            if(test2 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
-
-                case 4:
-                accountType = "Business Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                do
-                    {
-                        Console.Write("\tEnter Customers's AccountNumber: ");
-                        accountNumber = Console.ReadLine();
-                    }while(accountNumber.Length != 10 );
-
-                   _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin1,accountType,accountNumber);
-                    Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer's Update Completed->>>>> ");
-
-                    Console.WriteLine("Enter 1 to go back to login menu");
-                            int test3; 
-                            int.TryParse(Console.ReadLine(),out test3);
-                            if(test3 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                break;
-
-                case 5:
-                accountType = "Joint Account";  
-                System.Console.WriteLine($"\n\tHello {firstName} {lastName} !\n\tYou have chosen {accountType} as your account Type");
-                do
-                    {
-                        Console.Write("\tEnter Customers's AccountNumber: ");
-                        accountNumber = Console.ReadLine();
-                    }while(accountNumber.Length != 10 );
-
-                   _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin1,accountType,accountNumber);
-                    Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Customer's Update Completed->>>>> ");
-
-                    Console.WriteLine("Enter 1 to go back to login menu");
-                            int test4; 
-                            int.TryParse(Console.ReadLine(),out test4);
-                            if(test4 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                    
-                break;
-            }
-        }
-
-
-                public void ViewAllCustomerMenu()
-                {
-                            string account;
-                                    Console.WriteLine(@"
-
-                        ################################################################################
-                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
-                        ####________________________________________________________________________####
-                        ####Welcome to Zenith Bank >>> Viewing Customers details using Admin Portal ####
-                        ####------------------------------------------------------------------------####
-                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
-                        ################################################################################");
-
-                        do
+                    System.Console.WriteLine("Enter admin mail ");
+                            string mail2 = Console.ReadLine().ToUpper();
+                            System.Console.WriteLine("Enter admin password");
+                            string pass2 = Console.ReadLine();
+                            var admin = _iAdminManager.Login(mail2,pass2);
+                            if(admin != null)
                             {
-                                Console.Write("\tEnter Customers's AccountNumber: ");
-                                account = Console.ReadLine();
-                            }while(account.Length != 10 );
-
-                        _iCustomerManager.ViewCustomers(account);
-
-                        Console.WriteLine("Enter 1 to go back to login menu");
-                        int test; 
-                        int.TryParse(Console.ReadLine(),out test);
-                            if(test ==1 )
+                                System.Console.WriteLine("Login Successfully");
+                                System.Console.WriteLine("\n\tEnter 1 to manage admin\n\tEnter 2 to manage Customer");
+                                int i;
+                                int.TryParse(Console.ReadLine(),out i);
+                                
+                                if (i == 1)
                                 {
-                                    LoginAdminMenu();
+                                    
+                                    var adminMenu = new AdminMenu();
+                                    adminMenu.ManageAdmins();
                                 }
-                                    else
-                                        {
-                                            System.Console.WriteLine("Closing...");
-                                        }
+                                if (i == 2)
+                                {
+                                    var adminMenu = new AdminMenu();
+                                    adminMenu.ManageCustomer();
+                                }
 
+                               
+                                                
+                               
+                            }
+                            else
+                            {
+                                System.Console.WriteLine("Invalid input");
+                            }
+                    
                 }
 
-                public void ViewCustomerMenu()
-                { 
-                            Console.WriteLine(@"
+                public void GetAdmin()
+                {
+
+                    Console.WriteLine(@"
 
                         ################################################################################
                         ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
@@ -528,147 +522,55 @@ namespace LegitBankApp.Menu
                         ####------------------------------------------------------------------------####
                         ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
                         ################################################################################");
-                            
-                            Console.Write("\tEnter Customer's Account Number: ");
-                            var account = Console.ReadLine();
-                        
-                            var customer = _iCustomerManager.GetCustomer(account);
-                            if (customer!= null)
+                    System.Console.WriteLine("Enter staff Id ");
+                            string id = Console.ReadLine().ToUpper();
+                             var admin3 =_iAdminManager.GetAdmin(id);
+                             if(admin3 != null)
                             {
-                                        Console.WriteLine($"\tThe customer's name is {customer._firstName} {customer._lastName}\n\tThe customer's email is {customer._email}\n\tThe customer's Phone Number  is {customer._phoneNumber}\n\tThe customer's account type is {customer._accountType} ");
-                                        
-                                        //System.Console.WriteLine(customer);
-                                        Console.WriteLine("Enter 1 to go back to login menu");
-                                    int test; 
-                                    int.TryParse(Console.ReadLine(),out test);
-                                    if(test ==1 )
-                                            {
-                                                LoginAdminMenu();
-                                            }
-                                    else
-                                        {
-                                            System.Console.WriteLine("Closing...");
-                                        }
-                                
+                                System.Console.WriteLine("<<<<Filter Successful>>>>>");
+                                System.Console.WriteLine($"\n{admin3._email}\t{admin3._firstName}\t{admin3._lastName}\t{admin3._age}\t{admin3._password}\t{admin3._phoneNumber}\t{admin3._address}\t{admin3._gender}");
                             }
                             else
                             {
-                                System.Console.Beep();
-                                Console.WriteLine("Wrong Input.");
-                                Console.WriteLine("Enter 1 to go back to login menu");
-                            int test; 
-                            int.TryParse(Console.ReadLine(),out test);
-                            if(test ==1 )
-                                {
-                                    LoginAdminMenu();
-                                }
-                            else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
+                                System.Console.WriteLine("Invalid input");
                             }
 
-                        }
+                }
 
-
-                public void SubAdminMenu()
+                public void UpdateAdmin()
                 {
 
                             Console.WriteLine(@"
 
-                        ################################################################################
-                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
-                        ####________________________________________________________________________####
-                        ####                         Welcome To ZenithBank   !                      ####
-                        ####------------------------------------------------------------------------####
-                        ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
-                        ################################################################################");
-                        Console.WriteLine("\n\tHome >> Login >> Admin >>");
-                        Console.WriteLine("\n\tEnter 0 to opt out\n\tEnter 1 to Register a customer\n\tEnter 2 to Update Customer's Information\n\tEnter 3 to Delete Customer's record\n\tEnter 4 to View Customer's record\n\tEnter 5 to view All Customer's record");
-                        int choice;
-                        int.TryParse(Console.ReadLine(),out choice);
-                        switch(choice)
-                        {
-                            case 0:
-                                System.Console.WriteLine("Application Closing...");
-                            break;
+                    ################################################################################
+                    ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                    ####________________________________________________________________________####
+                    ####Welcome to Zenith Bank >>> Updating Customer's detail using Admin Portal####
+                    ####------------------------------------------------------------------------####
+                    ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
+                    ################################################################################");
+                            System.Console.WriteLine("Enter admin first name");
+                            string first5 = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin last name");
+                            string last5 = Console.ReadLine();
+                            string phone5;
+                            do
+                            {
+                            System.Console.WriteLine("Enter admin Phone number");
+                            phone5 = Console.ReadLine();
+                            }while(phone5.Length != 11);
+                            System.Console.WriteLine("Enter admin age");
+                            string age5 = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin mail ");
+                            string mail5 = Console.ReadLine().ToUpper();
+                            System.Console.WriteLine("Enter admin password");
+                            string pass5 = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin address");
+                            string address5 = Console.ReadLine();
+                            System.Console.WriteLine("Enter admin Id");
+                            string id = Console.ReadLine();
 
-                            case 1:
-                                CreateCustomerMenu();
-                                Console.WriteLine("Enter 1 to go back to login menu");
-                                int test; 
-                                int.TryParse(Console.ReadLine(),out test);
-                                if(test ==1 )
-                                {
-                                    LoginAdminMenu();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 2:
-                                UpdateCustomerMenu();
-                                Console.WriteLine("Enter 1 to go back to login menu");
-                                int test1; 
-                                int.TryParse(Console.ReadLine(),out test1);
-                                if(test1 ==1 )
-                                {
-                                    LoginAdminMenu();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 3:
-                                DeleteCustomertMenu();
-                                Console.WriteLine("Enter 1 to go back to login menu");
-                                int test2; 
-                                int.TryParse(Console.ReadLine(),out test2);
-                                if(test2 ==1 )
-                                {
-                                    LoginAdminMenu();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 4:
-                                ViewCustomerMenu();
-                                Console.WriteLine("Enter 1 to go back to login menu");
-                                int test3; 
-                                int.TryParse(Console.ReadLine(),out test3);
-                                if(test3 ==1 )
-                                {
-                                    LoginAdminMenu();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Closing...");
-                                }
-                            break;
-
-                            case 5:
-                                    ViewAllCustomerMenu();
-                                    Console.WriteLine("Enter 1 to go back to login menu");
-                                    int test4; 
-                                    int.TryParse(Console.ReadLine(),out test4);
-                                    if(test4 ==1 )
-                                    {
-                                        LoginAdminMenu();
-                                    }
-                                    else
-                                    {
-                                        System.Console.WriteLine("Closing...");
-                                    }
-                            break;   
-                            
-                        }
+                             _iAdminManager.UpdateAdmin(first5,last5,phone5,age5,mail5,pass5,address5,id);
 
                 }
 
@@ -691,14 +593,7 @@ namespace LegitBankApp.Menu
 
                 {
                    
-                    string firstName = " ";
-                    string lastName = " ";
-                    string age = " ";
-                    string email = " ";
-                    string passWord = " ";
-                    string number = " ";
-                    string address = " ";
-                    string gender = " ";
+                    
                     string pin1;
                     Console.Write("\tEnter your withdrawal amount:");
                     double withdraw;
@@ -715,15 +610,17 @@ namespace LegitBankApp.Menu
                             Console.Write("\tEnter four secrete digit Pin: ");
                             pin1 = Console.ReadLine();
                         }while(pin1.Length != 4 );
-                    string accountType = " ";
-                    long balance = 0;
+                    double y = Transaction._accountBalance-=withdraw;
+                    double balance = y;
                      long depo = 0;
                      long airtime = 0;
                      string time = DateTime.Now.ToString("dddd,dd MMMM yyyy HH:mm:ss");
                      string refNum = " ";
+                     
+                     
 
-                        _iTransactionManager.CreateWithdrawal(firstName,lastName,age,email,passWord,number,address,gender,pin1,accountType,balance,withdraw,depo,airtime,acc,time,refNum);
-                        System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {withdraw}\n\tFrom: {acc}\n\tYour balance is: {Transaction._accountBalance}\n\tDate: {time}");
+                        _iTransactionManager.CreateWithdrawal(balance,withdraw,depo,airtime,acc,time,refNum);
+                        // System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {withdraw}\n\tFrom: {acc}\n\tYour balance is: {balance}\n\tDate: {time}");
 
 
 
@@ -734,14 +631,7 @@ namespace LegitBankApp.Menu
 
                 {
                    
-                    string firstName = " ";
-                    string lastName = " ";
-                    string age = " ";
-                    string email = " ";
-                    string passWord = " ";
-                    string number = " ";
-                    string address = " ";
-                    string gender = " ";
+                    
                     string pin1;
                     Console.Write("\tEnter your deposit amount:");
                     double depo;
@@ -758,15 +648,17 @@ namespace LegitBankApp.Menu
                             Console.Write("\tEnter four secrete digit Pin: ");
                             pin1 = Console.ReadLine();
                         }while(pin1.Length != 4 );
-                    string accountType = " ";
-                    long balance = 0;
+                    
+                    double x = Transaction._accountBalance+= depo;
+                    double balance = x;
                      long withdraw = 0;
                      long airtime = 0;
                      string time = DateTime.Now.ToString("dddd,dd MMMM yyyy HH:mm:ss");
                      string refNum = " ";
+                     
 
-                        _iTransactionManager.CreateDeposit(firstName,lastName,age,email,passWord,number,address,gender,pin1,accountType,balance,withdraw,depo,airtime,acc,time,refNum);
-                        System.Console.WriteLine($"\n\tTnx: Credit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {depo}\n\tYour balance is: {Transaction._accountBalance}\n\tDate: {time}");
+                        _iTransactionManager.CreateDeposit(balance,withdraw,depo,airtime,acc,time,refNum);
+                       
 
 
                 }
@@ -776,14 +668,6 @@ namespace LegitBankApp.Menu
 
                 {
                    
-                    string firstName = " ";
-                    string lastName = " ";
-                    string age = " ";
-                    string email = " ";
-                    string passWord = " ";
-                    string number = " ";
-                    string address = " ";
-                    string gender = " ";
                     string pin1;
                     Console.Write("\tEnter your airtime amount:");
                     double airtime;
@@ -801,15 +685,15 @@ namespace LegitBankApp.Menu
                             Console.Write("\tEnter four secrete digit Pin: ");
                             pin1 = Console.ReadLine();
                         }while(pin1.Length != 4 );
-                    string accountType = " ";
-                    long balance = 0;
+                    double i = Transaction._accountBalance-=airtime;
+                    double balance = i;
                      long withdraw = 0;
                      long depo = 0;
                      string time = DateTime.Now.ToString("dddd,dd MMMM yyyy HH:mm:ss");
                      string refNum = " ";
 
-                        _iTransactionManager.CreateAirtime(firstName,lastName,age,email,passWord,number,address,gender,pin1,accountType,balance,withdraw,depo,airtime,acc,time,refNum);
-                        System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {airtime}\n\tTo: {reciever}\n\tYour balance is: {Transaction._accountBalance}\n\tDate: {time}");
+                        _iTransactionManager.CreateAirtime(balance,withdraw,depo,airtime,acc,time,refNum);
+                       
 
 
                 }
@@ -820,11 +704,16 @@ namespace LegitBankApp.Menu
                     {
                         System.Console.WriteLine("Enter your ref number to delete transaction");
                         string refNum = Console.ReadLine();
-                        _iTransactionManager.GetTransaction(refNum);
+                        var tra = _iTransactionManager.GetTransaction(refNum);
+                        var cus = new Customer(" "," "," "," "," "," "," "," "," "," ");
+                        if(tra != null)
+                        {
+                            System.Console.WriteLine($"\nAccount Number= {cus._accountNumber}\tAccoun Balance= {Transaction._accountBalance}\tWithdrawal Amount= {Transaction._withdrawalAmount}\tDeposit Amoun= {Transaction._depositAmount}\tAirtime Amount= {Transaction._airtimeAmount}\tRef num= {Transaction._dateTime}");
+                        }
                     }
 
 
-                    public void SubAdminMenuTransaction()
+                    public void ManageTransaction()
                     {
                           Console.WriteLine(@"
 
@@ -851,7 +740,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test);
                                 if(test ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {
@@ -866,7 +755,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test1);
                                 if(test1 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {
@@ -881,7 +770,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test2);
                                 if(test2 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {
@@ -891,13 +780,15 @@ namespace LegitBankApp.Menu
                            
 
                             case 4:
-                            _iTransactionManager.DeleteWithdrawal();
+                            System.Console.WriteLine("Enter the transaction ref number");
+                            string refNum = Console.ReadLine();
+                            _iTransactionManager.DeleteWithdrawal(refNum);
                             Console.WriteLine("Enter 1 to go back to login menu");
                                 int test3; 
                                 int.TryParse(Console.ReadLine(),out test3);
                                 if(test3 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {
@@ -906,13 +797,16 @@ namespace LegitBankApp.Menu
                             break;
 
                             case 5:
-                            _iTransactionManager.DeleteDeposite();
+                            System.Console.WriteLine("Enter the transaction ref number");
+                            string refNum2 = Console.ReadLine();
+
+                            _iTransactionManager.DeleteDeposite(refNum2);
                             Console.WriteLine("Enter 1 to go back to login menu");
                                 int test4; 
                                 int.TryParse(Console.ReadLine(),out test4);
                                 if(test4 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {
@@ -921,13 +815,15 @@ namespace LegitBankApp.Menu
                             break;
 
                             case 6:
-                            _iTransactionManager.DeleteAirtime();
+                            System.Console.WriteLine("Enter the transaction ref number");
+                            string refNum3 = Console.ReadLine();
+                            _iTransactionManager.DeleteAirtime(refNum3);
                             Console.WriteLine("Enter 1 to go back to login menu");
                                 int test5; 
                                 int.TryParse(Console.ReadLine(),out test5);
                                 if(test5 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {
@@ -942,7 +838,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test6);
                                 if(test6 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogIn();
                                 }
                                 else
                                 {

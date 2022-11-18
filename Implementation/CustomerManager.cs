@@ -3,146 +3,160 @@ using System.Collections.Generic;
 using LegitBankApp.Interfaces;
 using LegitBankApp.Model;
 using System.IO;
+using MySql.Data.MySqlClient;
+
 namespace LegitBankApp.Implementations
 {
     public class CustomerManager : ICustomerManager
     {
-        public string _fileDirect = @"C:\Users\user\Desktop\LegitBankApp\File";
-        public  string _linkFile1 = "C:\\Users\\user\\Desktop\\LegitBankApp\\File\\CustomerFile.txt";
+         string conn = "Server=localhost;port=3306;Database=bankapp;Uid=root;Pwd=Adebayo58641999";
+        
 
-        public void CreateCustomer(string firstName, string lastName, string age, string email, string password, string phoneNumber, string address, string gender, string pin, string accountType)
+        public void CreateCustomer(string firstName, string lastName, string age, string email, string password, string phoneNumber, string accountNumber, string gender, string pin, string accountType)
         {
-           Customer.listOfCustomer.Add(new Customer(firstName,lastName,age,email,password,phoneNumber,address,gender,pin,accountType));
-            Customer customer = new Customer(firstName,lastName,age,email,password,phoneNumber,address,gender,pin,accountType);
-            System.Console.WriteLine($"<<<<<Your Account Number is : {customer._accountNumber}>>>>>");
-            //_data = $"{firstName}^^^{lastName}^^^{age}^^^{email}^^^{password}^^^{phoneNumber}^^^{address}^^^{gender}^^^{ad._staffID}";
-               using (StreamWriter streamWriter = new StreamWriter(_linkFile1, append: true))
+            try
             {
-                streamWriter.WriteLine(customer.WriteToCustomerFile());
+                
+                Customer custom = new Customer(firstName, lastName, age, email, password, phoneNumber, accountNumber, gender,pin,accountType);
+               
+                using (var connection = new MySqlConnection(conn))
+                {
+                    string qur = $"insert into Customer (firstName, lastName, age, email, password, phoneNumber, accountNumber, gender,pin,accountType) values ('{custom._firstName}','{custom._lastName}','{custom._age}','{custom._email.Trim().ToUpper()}','{custom._password}','{custom._phoneNumber}','{custom._accountNumber}','{custom._gender}','{custom._pin}','{custom._accountType}')";
+                    connection.Open();
+                    using (var command = new MySqlCommand(qur, connection))
+                    {
+                        var execute = command.ExecuteNonQuery();
+                        if(execute > 0)
+                        {
+                            System.Console.WriteLine($"<<<<<Your Account Number is : {custom._accountNumber}>>>>>");
+                             System.Console.WriteLine($"\n\tCongratulation {firstName} {lastName},registration completed");
+
+                        }
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+            
+            
         }
 
         public void DeleteCustomer(string accountNumber)
         {
-             var customer = GetCustomer(accountNumber);
-            if (customer != null)
-            {
-                Console.WriteLine($"{customer._firstName} {customer._lastName} Successfully deleted. Thank you ! ");
-                Customer.listOfCustomer.Remove(customer);
-                ReWriteToCustomerFile();
+            try
+                {
+                    using (var connection = new MySqlConnection(conn))
+                    {
+                        connection.Open();
+                        using (var command = new MySqlCommand($"delete From Customer WHERE accountNumber = '{accountNumber}'", connection))
+                        {
+                            var execute = command.ExecuteNonQuery();
+                            if(execute > 0)
+                            {
+                                Customer custom = new Customer(" ", " ", " ", " ", " ", " ", " ", " "," "," ");
+
+                                System.Console.WriteLine($"\n\t{custom._firstName} {custom._lastName} Successfully deleted. ");
+                            }
+                           
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
             }
-            else
+           
+        public void UpdateCustomer(string firstName, string lastName, string age, string email, string password, string phoneNumber, string address, string pin, string accountType, string accountNumber)
+        {
+           var customer2 = GetCustomer(accountNumber);
+            if(customer2 != null)
             {
-                Console.Beep();
-                Console.WriteLine("User not found.");
+            try
+                {
+                    using (var connection = new MySqlConnection(conn))
+                    {
+                        connection.Open();
+                        var ad = new Admin(" "," "," "," "," "," "," "," ");
+                        var queryUpdateA = $"update Customer set firstName = '{firstName}',lastName = '{lastName}', age = '{email}',password = '{password}',phoneNumber = '{phoneNumber}',accountNumber = '{accountNumber}',pin = '{pin}',accountType = '{accountType}'";
+                        using (var command = new MySqlCommand(queryUpdateA, connection))
+                        {
+                            var execute = command.ExecuteNonQuery();
+                            if(execute > 0)
+                            {
+                                System.Console.WriteLine($"\n\tCongratulation {firstName} {lastName},You have successfully updated your information");
+
+                            }
+                            else
+                            {
+                                System.Console.WriteLine("Invalid input");
+                            }
+                           
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
             }
+
+
         }
 
         public Customer GetCustomer(string accountNumber)
         {
-            foreach (var item in Customer.listOfCustomer)
+            Customer custom = null;
+
+            using (var connection = new MySqlConnection(conn))
             {
-                if (item._accountNumber == accountNumber)
+                connection.Open();
+                string query = $"select * from Customer where accountNumber ='{accountNumber}'  ";
+                using (var command = new MySqlCommand(query, connection))
                 {
-                    return item;
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        custom = new Customer($"{reader["firstName"].ToString()}", $"{reader["lastName"].ToString()}", $"{reader["age"].ToString()}", $"{reader["email"].ToString()}", $"{reader["password"].ToString()}", $"{reader["phoneNumber"].ToString()}", $"{reader["accountNumber"].ToString()}", $"{reader["gender"].ToString()}", $"{reader["pin"].ToString()}", $"{reader["accountType"].ToString()}");
+
+                    }
                 }
             }
+            if (custom != null)
+            {
+                return custom;
+            }
+
             return null;
+
         }
 
         public Customer Login(string email, string password)
         {
-           foreach (var item in Customer.listOfCustomer)
+            Customer custom = null;
+            try
             {
-                if (item._email == email.ToUpper() && item._password == password)
+                using (var connection = new MySqlConnection(conn))
                 {
-                    return item;
+                    connection.Open();
+                    using (var command = new MySqlCommand($"select * From Customer WHERE email = '{email}'", connection))
+                    {
+                        var reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            custom = new Customer( reader["firstName"].ToString(), reader["lastName"].ToString(),reader["age"].ToString(), reader["email"].ToString(), reader["password"].ToString(), reader["phoneNumber"].ToString(), reader["accountNumber"].ToString(),reader["gender"].ToString(),reader["pin"].ToString(),reader["accountType"].ToString());
+                        }
+                    }
                 }
             }
-            return null;
-        }
-
-        public  void ReadFromFileOfCustomer()
-        {
-            if (!Directory.Exists(_fileDirect)) Directory.CreateDirectory(_fileDirect);
-
-            if (!File.Exists(_linkFile1))
+            catch (System.Exception ex)
             {
-                var fileStream = new FileStream(_linkFile1, FileMode.CreateNew);
-                fileStream.Close();
+                System.Console.WriteLine(ex.Message);
             }
-            using (var streamReader = new StreamReader(_linkFile1))
-            {
-                while (streamReader.Peek() != -1)
-                {
-                    var customerManager = streamReader.ReadLine();
-                    Customer.listOfCustomer.Add(Customer.ConvertToCustomer(customerManager));
-                }
-            }
+            return custom is not null && custom._email.ToUpper() == email.ToUpper() && custom._password == password ? custom : null;
         }
-
-        public void WriteToTheListOfCustomer()
-        {
-            File.WriteAllText(_linkFile1, string.Empty);
-            using (var streamWriter = new StreamWriter(_linkFile1, append: true))
-            {
-                foreach (var item in Customer.listOfCustomer)
-                {
-                    streamWriter.WriteLine(item.WriteToCustomerFile());
-                }
-                
-            }
-        }
-
-        public void UpdateCustomer(string firstName, string lastName, string age, string email, string password, string phoneNumber, string address, string pin, string accountType,string accountNumber)
-        {
-            var customer = GetCustomer(accountNumber);
-            if (customer != null)
-            {
-                customer._firstName      = firstName;
-                customer._lastName       = lastName;
-                customer._age            = age;
-                customer._email          = email;
-                customer._password       = password;
-                customer._phoneNumber    = phoneNumber;
-                customer._address        = address;
-                customer._pin            = pin;
-                customer._accountType    = accountType;
-              
-            }
-            else
-            {
-                Console.Beep();
-                Console.WriteLine("User not found.");
-            }
-        }
-
-        public void ReWriteToCustomerFile()
-        {
-            File.WriteAllText(_linkFile1, string.Empty);
-            using (var streamWriter = new StreamWriter(_linkFile1, append: true))
-            {
-                foreach (var item in Customer.listOfCustomer)
-                {
-                    streamWriter.WriteLine(item.WriteToCustomerFile());
-                }
-            }
-        }
-
-        public void ViewCustomers(string accountNumber)
-        {
-             foreach (var item in Customer.listOfCustomer)
-            {
-                Console.WriteLine($"{item._firstName}\t{item._lastName}\t{item._email}\t{item._password}\t{item._accountNumber}\t{item._accountType}\t{item._pin}\t{item._address}\t{item._age}");
-            }
-        }
-
-        public void ViewAllCustomers(string accountNumber)
-        {
-            foreach (var item in Customer.listOfCustomer)
-            {
-                Console.WriteLine($"{item._firstName}\t{item._lastName}\t{item._email}\t{item._password}\t{item._accountNumber}\t{item._accountType}\t{item._pin}\t{item._address}\t{item._age}");
-            };
-        }
+       
     }
 }

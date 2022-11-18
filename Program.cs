@@ -32,11 +32,13 @@ Console.WriteLine($"\n__________________________________________________________
             
 
 
-            // var viewMenu = new ViewMenu();
-            // viewMenu.OverAll();
+            var viewMenu = new ViewMenu();
+            viewMenu.OverAll();
 
-            var admin = new AdminManager();
-            admin.QueryWriting();
+            
+
+            // var customer = new CustomerManager();
+            // customer.CreateCustomer();
 
            
 

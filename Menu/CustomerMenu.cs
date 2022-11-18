@@ -57,6 +57,7 @@ namespace LegitBankApp.Menu
             var address = Console.ReadLine();
             Console.Write("\tEnter your gender: ");
             var gender = Console.ReadLine();
+            var customer = new Customer(" "," "," "," "," "," "," "," "," "," ");
             string pin;
             string accType;
              do
@@ -70,31 +71,31 @@ namespace LegitBankApp.Menu
             if(ch ==1)
             {
                 accType = "Student account";
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accType);
+                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
             }
 
              if(ch ==2)
             {
                 accType = "Savings account";
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accType);
+                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
             }
 
              if(ch ==3)
             {
                 accType = "Current account";
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accType);
+                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
             }
 
              if(ch ==4)
             {
                 accType = "Business account";
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accType);
+                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
             }
 
              if(ch ==5)
             {
                 accType = "Joint account";
-                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,address,gender,pin,accType);
+                _iCustomerManager.CreateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
             }
 
             Console.Write($"\n\t<<<<<-Congratulations !->>>>>\n\t<<<<<-Registration Completed->>>>> ");
@@ -164,7 +165,7 @@ namespace LegitBankApp.Menu
                             int.TryParse(Console.ReadLine(),out test);
                             if(test ==1 )
                                     {
-                                           LoginAdminMenu();
+                                           LogCustomerMenu();
                                     }
                             else
                                 {
@@ -202,7 +203,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test);
                                 if(test ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogInCustomer();
                                 }
                                 else
                                 {
@@ -217,7 +218,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test1);
                                 if(test1 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogInCustomer();
                                 }
                                 else
                                 {
@@ -232,7 +233,7 @@ namespace LegitBankApp.Menu
                                 int.TryParse(Console.ReadLine(),out test2);
                                 if(test2 ==1 )
                                 {
-                                    LoginAdminMenu();
+                                    LogInCustomer();
                                 }
                                 else
                                 {

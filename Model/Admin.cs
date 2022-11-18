@@ -5,14 +5,14 @@ namespace LegitBankApp.Model
     public class Admin : User
     {
         public string _staffID {get; set;}
-        public int _adminRegNum {get;set;}
-        public static List<Admin> listOfAdmins = new List<Admin>();
+       // public int _adminRegNum {get;set;}
+        // public static List<Admin> listOfAdmins = new List<Admin>();
 
 
         public Admin(string firstName,string lastName,string age,string email,string password,string phoneNumber,string address,string gender): base (firstName,lastName,age,email,password,phoneNumber,address,gender)       
          {
             this._staffID      = GenerateStaffID();
-            this._adminRegNum  = listOfAdmins.Count == 0 ? 1 : listOfAdmins.Count + 1; 
+            //this._adminRegNum  = listOfAdmins.Count == 0 ? 1 : listOfAdmins.Count + 1; 
             this._firstName    = firstName;
             this._lastName     = lastName;
             this._age          = age;
@@ -28,7 +28,7 @@ namespace LegitBankApp.Model
         public string GenerateStaffID()
             {
                 var rand = new Random();
-                string id = "ZENITH/ADMIN-"+rand.Next(100, 500).ToString()+"/" +_firstName[0]+_firstName[1]+_firstName[2]+_adminRegNum.ToString() ;
+                string id = "ZENITH/ADMIN-"+rand.Next(100, 500).ToString()+"/" +_firstName[0]+_firstName[1]+_firstName[2]+"0" ;
                 return id;
 
             }
