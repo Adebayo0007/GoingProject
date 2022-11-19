@@ -16,12 +16,12 @@ namespace LegitBankApp
         ###########################################################################
         ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
         ####___________________________________________________________________####
-        ####     ZZZZZZZZZ EEEEEEEE  NN      NN   II  TTTTTTTTTT HH    HH      ####
+        ####     ZZZZZZZZZZ EEEEEEEE  NN      NN   II  TTTTTTTTTT HH    HH     ####
         ####                                                                   ####
-        ####          ZZ   EE        NN NN   NN   II      TT     HH    HH      ####
-        ####        ZZ     EEEEEEEE  NN  NN  NN   II      TT     HHHHHHHH      ####
-        ####      ZZZ      EE        NN   NN NN   II      TT     HH    HH      ####
-        ####   ZZZZZZZZZ   EEEEEEEE  NN      NN   II      TT     HH    HH      ####
+        ####          ZZ    EE        NN NN   NN   II      TT     HH    HH     ####
+        ####        ZZ      EEEEEEEE  NN  NN  NN   II      TT     HHHHHHHH     ####
+        ####      ZZZ       EE        NN   NN NN   II      TT     HH    HH     ####
+        ####   ZZZZZZZZZZ   EEEEEEEE  NN      NN   II      TT     HH    HH     ####
         ####___________________________________________________________________####
         ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
         ###########################################################################";

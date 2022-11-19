@@ -146,6 +146,7 @@ namespace LegitBankApp.Implementations
 
                         using (var connection = new MySqlConnection(conn))
                         {
+                            
                                     accountBalance = Transaction._accountBalance;
                                         accountBalance-=withdrawalAmount;
                                         Transaction._withdrawalAmount = withdrawalAmount;
@@ -188,77 +189,11 @@ namespace LegitBankApp.Implementations
                 System.Console.WriteLine("Low Balance");
             }
               
-           
-              
         }
 
         
 
-        // public void DeleteAirtime(string refNum)
-        // {
-        //     var transaction = GetTransaction(refNum);
-        //     if (transaction != null)
-        //     {
-        //         try
-        //         {
-        //             using (var connection = new MySqlConnection(conn))
-        //             {
-        //                 connection.Open();
-        //                 using (var command = new MySqlCommand($"delete From Transaction WHERE refNum = '{refNum}'", connection))
-        //                 {
-        //                     var execute = command.ExecuteNonQuery();
-        //                     if(execute > 0)
-        //                     {
-
-        //                         System.Console.WriteLine($"\n\t Transaction of #{Transaction._airtimeAmount} Airtime Successfully deleted. ");
-        //                     }
-                           
-        //                 }
-        //             }
-        //         }
-        //         catch (System.Exception ex)
-        //         {
-        //             System.Console.WriteLine(ex.Message);
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine("User not found.");
-        //     }
-        // }
-
-        // public void DeleteDeposite(string refNum)
-        // {
-        //     var transaction = GetTransaction(refNum);
-        //     if (transaction != null)
-        //     {
-        //         try
-        //         {
-        //             using (var connection = new MySqlConnection(conn))
-        //             {
-        //                 connection.Open();
-        //                 using (var command = new MySqlCommand($"delete From Transaction WHERE refNum = '{refNum}'", connection))
-        //                 {
-        //                     var execute = command.ExecuteNonQuery();
-        //                     if(execute > 0)
-        //                     {
-
-        //                         System.Console.WriteLine($"\n\t Transaction of #{Transaction._airtimeAmount} Deposit Successfully deleted. ");
-        //                     }
-                           
-        //                 }
-        //             }
-        //         }
-        //         catch (System.Exception ex)
-        //         {
-        //             System.Console.WriteLine(ex.Message);
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine("User not found.");
-        //     }
-        // }
+    
 
         public void DeleteTransaction(string refNum)
         {
