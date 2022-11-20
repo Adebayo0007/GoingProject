@@ -270,7 +270,7 @@ public void LogInManagingDirector()
                     }
                     if(choice == 1)
                     {
-                        System.Console.WriteLine("\n\tEnter 1 to Create Customer\n\tEnter 2 to Delete Customer\n\tEnter 3 to Login Customer\n\tEnter 4 to Get Customer Information using account number\n\tEnter 5 to Update Admin Information with your existing account Number");
+                        System.Console.WriteLine("\n\tEnter 1 to Create Customer\n\tEnter 2 to Delete Customer\n\tEnter 3 to Login Customer\n\tEnter 4 to Get Customer Information using account number\n\tEnter 5 to Update Customer Information with existing account Number");
                         int check;
                         int.TryParse(Console.ReadLine(), out check);
                         switch(check)
@@ -326,7 +326,7 @@ public void LogInManagingDirector()
                    if(customer3 != null)
                             {
                                 System.Console.WriteLine("<<<<Filter Successful>>>>>");
-                                System.Console.WriteLine($"\n{customer3._firstName}\t{customer3._lastName}\t{customer3._age}\t{customer3._email}\t{customer3._password}\t{customer3._phoneNumber}\t{customer3._accountNumber}\t{customer3._gender}\t{customer3._pin}\t{customer3._accountType}");
+                                System.Console.WriteLine($"\nFirst Name: {customer3._firstName}\tLast Name: {customer3._lastName}\tAge: {customer3._age}\tMail: {customer3._email}\tPassword: {customer3._password}\n\nPhone number: {customer3._phoneNumber}\tGender:{customer3._gender}\tPin: {customer3._pin}\tAccount Type: {customer3._accountType}\tAccount Balance: {customer3._accountBalance}");
                             }
                             else
                             {
@@ -353,8 +353,8 @@ public void LogInManagingDirector()
             var number = Console.ReadLine();
             Console.Write("\tEnter your Address: ");
             var address = Console.ReadLine();
-            Console.Write("\tEnter your gender: ");
-            var gender = Console.ReadLine();
+            Console.Write("\tEnter your account number: ");
+            var account = Console.ReadLine();
             var customer = new Customer(" "," "," "," "," "," "," "," "," "," ",0);
             string pin;
             string accType;
@@ -369,33 +369,33 @@ public void LogInManagingDirector()
             if(ch ==1)
             {
                 accType = "Student account";
-                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin,accType,account);
             }
 
              if(ch ==2)
             {
                 accType = "Savings account";
-                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+                 _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin,accType,account);
             }
 
              if(ch ==3)
             {
                 accType = "Current account";
-                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin,accType,account);
             }
 
              if(ch ==4)
             {
                 accType = "Business account";
-                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin,accType,account);
             }
 
              if(ch ==5)
             {
                 accType = "Joint account";
-                _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,customer._accountNumber,gender,pin,accType);
+                 _iCustomerManager.UpdateCustomer(firstName,lastName,age,email,passWord,number,address,pin,accType,account);
             }
-            System.Console.WriteLine("\n\t<<<<<<Update Successful>>>>>");
+            
 
                 }
 
@@ -616,11 +616,32 @@ public void LogInManagingDirector()
                      long airtime = 0;
                      string time = DateTime.Now.ToString("dddd,dd MMMM yyyy HH:mm:ss");
                      string refNum = " ";
+
+                     var cus = new CustomerManager();
+                     var check = cus.GetCustomer(acc);
+                     if(check != null)
+                     {
+                        if(check._pin == pin1)
+                        {
+
+                        _iTransactionManager.CreateWithdrawal(balance,withdraw,depo,airtime,acc,time,refNum,pin1);
+
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Wrong pin");
+                        }
+                         
+                     }
+                     else
+                     {
+                        System.Console.WriteLine("Not recognize");
+                     }
+
                      
                      
 
-                        _iTransactionManager.CreateWithdrawal(balance,withdraw,depo,airtime,acc,time,refNum);
-                        // System.Console.WriteLine($"\n\tTnx: Debit\n\tAc: {acc[0]}{acc[1]}*****{acc[7]}{acc[8]}*\n\tAmt: NGN {withdraw}\n\tFrom: {acc}\n\tYour balance is: {balance}\n\tDate: {time}");
+                       
 
 
 
@@ -655,9 +676,29 @@ public void LogInManagingDirector()
                      long airtime = 0;
                      string time = DateTime.Now.ToString("dddd,dd MMMM yyyy HH:mm:ss");
                      string refNum = " ";
+
+
+                     var cus = new CustomerManager();
+                     var check = cus.GetCustomer(acc);
+                     if(check != null)
+                     {
+                        if(check._pin == pin1)
+                        {
+                        _iTransactionManager.CreateDeposit(balance,withdraw,depo,airtime,acc,time,refNum,pin1);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Wrong pin");
+                        }
+                         
+                     }
+                     else
+                     {
+                        System.Console.WriteLine("Not recognize");
+                     }
+
                      
 
-                        _iTransactionManager.CreateDeposit(balance,withdraw,depo,airtime,acc,time,refNum);
                        
 
 
@@ -691,8 +732,28 @@ public void LogInManagingDirector()
                      long depo = 0;
                      string time = DateTime.Now.ToString("dddd,dd MMMM yyyy HH:mm:ss");
                      string refNum = " ";
+                     var cus = new CustomerManager();
+                     var check = cus.GetCustomer(acc);
+                     if(check != null)
+                     {
+                        if(check._pin == pin1)
+                        {
+                             _iTransactionManager.CreateAirtime(balance,withdraw,depo,airtime,acc,time,refNum,pin1);
 
-                        _iTransactionManager.CreateAirtime(balance,withdraw,depo,airtime,acc,time,refNum);
+
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Wrong pin");
+                        }
+                         
+                     }
+                     else
+                     {
+                        System.Console.WriteLine("Not recognize");
+                     }
+
+                       
                        
 
 
@@ -702,7 +763,7 @@ public void LogInManagingDirector()
                    
                     public void GetTransactionMenu()
                     {
-                        System.Console.WriteLine("Enter your ref number to Get transaction");
+                        System.Console.WriteLine("Enter the ref number to Get transaction");
                         string refNum = Console.ReadLine();
                         System.Console.WriteLine("Enter your account number");
                         string acc = Console.ReadLine();

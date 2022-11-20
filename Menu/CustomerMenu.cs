@@ -13,7 +13,7 @@ namespace LegitBankApp.Menu
         ICustomerManager _iCustomerManager         = new CustomerManager();
         public void AllCustomerMenu()
         {
-              System.Console.WriteLine("\n\tEnter 1 to Register as Customer\n\tEnter 2 to Login Customer");
+              System.Console.WriteLine("\n\tEnter 1 to Register as Customer\n\tEnter 2 to Login Customer\n\tEnter 3 to see our Advert");
             int check;
             int.TryParse(Console.ReadLine(),out check);
             switch(check)
@@ -24,6 +24,11 @@ namespace LegitBankApp.Menu
 
                  case 2:
                 LogCustomerMenu();
+                break;
+
+                case 3:
+               var view = new ViewMenu();
+               view.Ads();
                 break;
             }
         }

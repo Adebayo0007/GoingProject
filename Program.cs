@@ -38,8 +38,7 @@ namespace LegitBankApp
 
             
 
-            // var customer = new CustomerManager();
-            // customer.CreateCustomer();
+            
 
            
 

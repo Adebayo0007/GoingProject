@@ -79,8 +79,8 @@ namespace LegitBankApp.Implementations
                     using (var connection = new MySqlConnection(conn))
                     {
                         connection.Open();
-                        var ad = new Admin(" "," "," "," "," "," "," "," ");
-                        var queryUpdateA = $"update Customer set firstName = '{firstName}',lastName = '{lastName}', age = '{email}',password = '{password}',phoneNumber = '{phoneNumber}',accountNumber = '{accountNumber}',pin = '{pin}',accountType = '{accountType}'";
+                       
+                        var queryUpdateA = $"UPDATE Customer SET firstName = '{firstName}',lastName = '{lastName}', age = '{age}',email = '{email}',password = '{password}',phoneNumber = '{phoneNumber}',pin = '{pin}',accountType = '{accountType}' where accountNumber = '{accountNumber}'";
                         using (var command = new MySqlCommand(queryUpdateA, connection))
                         {
                             var execute = command.ExecuteNonQuery();
@@ -101,6 +101,10 @@ namespace LegitBankApp.Implementations
                 {
                     System.Console.WriteLine(ex.Message);
                 }
+            }
+            else
+            {
+                System.Console.WriteLine("Not recognized");
             }
 
 
