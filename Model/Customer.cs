@@ -40,16 +40,7 @@ namespace LegitBankApp.Model
 
             }
 
-        //     public  string WriteToCustomerFile()
-        //     {
-        //         return $"{_firstName}^^^{_lastName}^^^{_accountNumber}^^^{_email.ToUpper()}^^^{_password}^^^{_phoneNumber}^^^{_address}^^^{_gender}^^^{_pin}^^^{_accountType}";
-        //     }
-
-        // public static Customer ConvertToCustomer(string customerDataFromText)
-        // {
-        //     var customerConvert = customerDataFromText.Split("^^^");
-        //     return new Customer(customerConvert[0], customerConvert[1], customerConvert[2], customerConvert[3], customerConvert[4], customerConvert[5], customerConvert[6], customerConvert[7], customerConvert[8], customerConvert[9]);
-        // }
+       
     
 
     }

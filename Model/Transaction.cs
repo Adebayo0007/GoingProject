@@ -26,11 +26,11 @@ namespace LegitBankApp
             Transaction._dateTime      = dateTime;
             Transaction._accountnumber = accountnumber1;
             Transaction._pin = pin;
-            string x = (listOfTransaction.Count == 0? 1 : listOfTransaction.Count +1).ToString();
             string alpha  ="abcdefghijklmnopqrstuvwxyz".ToUpper();
             var i = new Random().Next(25);
              var j = new Random().Next(25);
-            this._refNum        = $"Ref00{i}{j}{alpha[i]}{alpha[j]}" ;
+              var k = new Random().Next(25,99);
+            this._refNum        = $"Ref{k}{i}{j}{alpha[i]}{alpha[j]}" ;
             refNum = this._refNum;
 
             
