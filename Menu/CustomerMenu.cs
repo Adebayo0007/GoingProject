@@ -193,7 +193,7 @@ namespace LegitBankApp.Menu
                         ####>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>####
                         ################################################################################");
                         Console.WriteLine("\n\tHome >> Login >> Customer >>");
-                        Console.WriteLine("\n\tEnter 0 to opt out\n\tEnter 1 to Create withdrawal\n\tEnter 2 to Create Deposit\n\tEnter 3 to Create airtime");
+                        Console.WriteLine("\n\tEnter 0 to opt out\n\tEnter 1 to Create withdrawal\n\tEnter 2 to Create Deposit\n\tEnter 3 to Create airtime\n\tEnter 4 to Create Transfer");
                         int choice;
                         int.TryParse(Console.ReadLine(),out choice);
                         switch(choice)
@@ -237,6 +237,22 @@ namespace LegitBankApp.Menu
                                 int test2; 
                                 int.TryParse(Console.ReadLine(),out test2);
                                 if(test2 ==1 )
+                                {
+                                    LogInCustomer();
+                                }
+                                else
+                                {
+                                    System.Console.WriteLine("Closing...");
+                                }
+                            break;
+
+                             case 4:
+                             var admin = new AdminMenu();
+                             admin.CreateTransferMenu();
+                             Console.WriteLine("Enter 1 to go back to login menu");
+                                int test3; 
+                                int.TryParse(Console.ReadLine(),out test3);
+                                if(test3 ==1 )
                                 {
                                     LogInCustomer();
                                 }

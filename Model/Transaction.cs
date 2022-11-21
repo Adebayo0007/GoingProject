@@ -11,11 +11,11 @@ namespace LegitBankApp
         public static double _airtimeAmount    {get; set;}
         public static string _accountnumber    {get; set;}
         public static string _dateTime         {get; set;}
+        public static double _transferAmount {get; set;}
         public  string _refNum                 {get; set;}
-         public  static string _pin                {get; set;}
-        public static List<Transaction> listOfTransaction = new List<Transaction>();
-
-        public Transaction(double accountBalance,double withdrawalAmount,double depositAmount,double airtimeAmount,string accountnumber1,string dateTime,string refNum,string pin) 
+         public  static string _pin             {get; set;}
+        
+        public Transaction(double accountBalance,double withdrawalAmount,double depositAmount,double airtimeAmount,double transferAmount,string accountnumber1,string dateTime,string refNum,string pin) 
          {
            
             
@@ -25,13 +25,15 @@ namespace LegitBankApp
             Transaction._airtimeAmount = airtimeAmount;
             Transaction._dateTime      = dateTime;
             Transaction._accountnumber = accountnumber1;
+            Transaction._transferAmount = transferAmount;
             Transaction._pin = pin;
+            refNum = this._refNum;
             string alpha  ="abcdefghijklmnopqrstuvwxyz".ToUpper();
             var i = new Random().Next(25);
              var j = new Random().Next(25);
               var k = new Random().Next(25,99);
             this._refNum        = $"Ref{k}{i}{j}{alpha[i]}{alpha[j]}" ;
-            refNum = this._refNum;
+          
 
             
          }

@@ -187,6 +187,28 @@ namespace LegitBankApp.Implementations
 
             }
 
+            public void GetAllAdminFronSql()
+        {
+            
+
+            using (var connection = new MySqlConnection(conn))
+            {
+                connection.Open();
+                string query = $"select * from Admin";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        System.Console.WriteLine($"{reader["staffId"]}\t{reader["firstName"]}\t{reader["lastName"]}\t{reader["age"]}\t{reader["email"].ToString()}\t{reader["password"].ToString()}\t{reader["phoneNumber"].ToString()}\t{reader["address"].ToString()}\t{reader["gender"].ToString()}");
+
+                    }
+                }
+            }
+            
+        }
+
+
             
         }
     }

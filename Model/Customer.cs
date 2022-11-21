@@ -9,14 +9,12 @@ namespace LegitBankApp.Model
         public string _accountType   {get; set;}
         public int _customerRegNum   {get; set;}
         public double _accountBalance {get; set;}
-        public static List<Customer> listOfCustomer = new List<Customer>();
 
         public Customer(string firstName,string lastName,string age,string email,string password,string phoneNumber,string address,string gender,string pin,string accountType,double accountBalance) : base (firstName,lastName,age,email,password,phoneNumber,address,gender)
         {
             this._accountNumber = GenerateCustomerAcountNumber();
             this._pin = pin;
-            this._accountType = accountType;
-            this._customerRegNum = listOfCustomer.Count == 0 ? 1 : listOfCustomer.Count + 1;   
+            this._accountType = accountType; 
             this._firstName = firstName;
             this._lastName = lastName;
             this._age = age;

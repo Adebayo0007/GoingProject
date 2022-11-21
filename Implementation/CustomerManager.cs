@@ -161,6 +161,39 @@ namespace LegitBankApp.Implementations
             }
             return custom is not null && custom._email.ToUpper() == email.ToUpper() && custom._password == password ? custom : null;
         }
+
+
+         public void GetAllCustomerFronSql()
+        {
+            
+
+            using (var connection = new MySqlConnection(conn))
+            {
+                connection.Open();
+                string query = $"select * from Customer";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        System.Console.WriteLine($"{reader["firstName"]}\t{reader["lastName"]}\t{reader["age"]}\t{reader["email"]}\t{reader["password"].ToString()}\t{reader["phoneNumber"].ToString()}\t{reader["gender"].ToString()}\t{reader["pin"].ToString()}\t{reader["accountType"].ToString()}");
+
+                    }
+                }
+            }
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
        
     }
 }
