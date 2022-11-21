@@ -14,105 +14,7 @@ namespace LegitBankApp.Implementations
         public string _data { get; set; }
         string conn = "Server=localhost;port=3306;Database=bankapp;Uid=root;Pwd=Adebayo58641999";
 
-        public void QueryWriting(int id)
-        {
-            //create connection
-            //open connection and
-            //querry
-
-
-/*
-            try
-            {
-                MySqlConnection mySqlConnection = new MySqlConnection(conn);
-                using (var connection = mySqlConnection)
-                {
-                    string qur = $"insert into admin (staffId,firstName,lastName,age,email,password,phoneNumber,address,gender)  values ('ZENITH/ADMIN-303/Lek0','Lekan','Ridwan','15','LEKAN@GMAIL.COM','3456','07077432567','20,Godwin street,Abeokuta','male')";
-                    connection.Open();
-                    using (var command = new MySqlCommand(qur, connection))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(ex.Message);
-
-            }
-            */
-
-
-
-            
-
-
-            //read from sql
-            
-            // try
-
-            // {
-            //     string conn = "Server=localhost;port=3306;Database=bankapp;Uid=root;Pwd=Adebayo58641999";
-            //     using (var connection = new MySqlConnection(conn))
-            //     {
-            //         connection.Open();
-            //         var command = new MySqlCommand($"Select * from staffs where ID = '{id}'", connection);
-            //         var reader  = command.ExecuteReader();
-            //         while(reader.Read())
-            //         {
-            //            Console.WriteLine($"{reader["Name"]}");
-                   
-            //             new Transactino{
-            //                // Transaction._accountBalance=  (double)reader["accountBalance"],
-            //                 Email = (string)reader["Email"]
-
-            //             };
-                        
-            //         }
-            //     }
-            // }
-            // catch(Exception ex)
-            // {
-            //     Console.WriteLine(ex.Message);
-            // }
-            
-
-
-
-
-            
-            //  try
-            //  {
-            //      string conn = "Server=localhost;port=3306;Database=bankapp;Uid=root;Pwd=Adebayo58641999";
-            //      using (var connection = new MySqlConnection(conn))
-            //      {
-            //          connection.Open();
-            //          string qur = $"create table Transaction (id int auto_increment,staffId varchar(20) not null unique,firstName varchar(20) not null,lastName varchar(20) not null,age varchar (20) not null,email  varchar(50) not null unique,password varchar(50) not null ,phoneNumber  varchar (20) not null unique,address varchar(50) not null,gender varchar(10) not null, primary key (id,staffId))";
-            //          using (var command = new MySqlCommand(qur, connection))
-            //          {
-            //              command.ExecuteNonQuery();
-            //          }
-            //      }
-            //  }
-            //  catch (Exception ex)
-            //  {
-            //      System.Console.WriteLine(ex.Message);
-            //  }
-             
-
-
-
-
-            /*
-            System.Console.WriteLine("this is aftre dataabse");
-            var connection = new MySqlConnection("Server=localhost;port=3306;Database=bankapp;Uid=root;Pwd=Adebayo58641999");
-            string qur = $"create table bAdmin (id int auto_increment,staffId varchar(20) not null unique,firstName varchar(20) not null,lastName varchar(20) not null,age varchar (20) not null,email  varchar(50) not null unique,password varchar(50) not null ,phoneNumber  varchar (20) not null unique,address varchar(50) not null,gender varchar(10) not null, primary key (id,staffId))";
-            var command = new MySqlCommand(qur, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-            */
-
-        }
+       
 
         public void CreateAdmin(string firstName, string lastName, string age, string email, string password, string phoneNumber, string address, string gender)
         {
@@ -285,5 +187,6 @@ namespace LegitBankApp.Implementations
 
             }
 
+            
         }
     }

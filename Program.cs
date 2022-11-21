@@ -36,6 +36,16 @@ namespace LegitBankApp
             var viewMenu = new ViewMenu();
             viewMenu.OverAll();
 
+
+
+           
+
+                  
+                
+
+
+            
+
             
 
             

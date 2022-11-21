@@ -28,7 +28,7 @@ namespace LegitBankApp.Model
         public string GenerateStaffID()
             {
                 var rand = new Random();
-                string id = "ZENITH/ADMIN-"+rand.Next(100, 500).ToString()+"/" +_firstName[0]+_firstName[1]+_firstName[2]+"0" ;
+                string id = "ZENITH/ADMIN-"+rand.Next(100, 500).ToString()+"/" +_firstName[0]+_firstName[1]+_firstName[2]+rand.Next(0,9).ToString() ;
                 return id;
 
             }

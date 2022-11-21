@@ -33,8 +33,9 @@ namespace LegitBankApp.Model
         public string GenerateCustomerAcountNumber()
             {
                 Random random = new Random();
+                Random rand = new Random();
                 string preTest =_customerRegNum.ToString();
-                string customerAccountNumber = $"{random.Next(300,700)}{random.Next(100, 900).ToString()}0100";
+                string customerAccountNumber = $"{random.Next(300,700).ToString()}{random.Next(100, 900).ToString()}{rand.Next(100,400).ToString()}0";
                 return customerAccountNumber;
 
             }
