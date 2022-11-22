@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj": {}
+    "c:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj": {
+    "c:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj",
+        "projectUniqueName": "c:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj",
         "projectName": "LegitBankApp",
-        "projectPath": "C:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj",
+        "projectPath": "c:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\LegitBankApp\\obj\\",
+        "outputPath": "c:\\Users\\user\\Desktop\\LegitBankApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,9 +38,23 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.29, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
             }
           },
           "imports": [
@@ -49,7 +63,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -58,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
