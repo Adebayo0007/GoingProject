@@ -2,25 +2,25 @@ namespace LegitBankApp.Model
 {
     public class User
     {
-        public string _firstName {get;set;}
-        public string _lastName{get;set;}
-        public string _age        {get;set;}
-        public string _email      {get;set;}
-        public string _password   {get;set;}
-        public string _phoneNumber{get;set;}
-        public string _address    {get;set;}
-        public string _gender     {get;set;}
+        public string firstName {get;set;}
+        public string lastName{get;set;}
+        public string age        {get;set;}
+        public string email      {get;set;}
+        public string password   {get;set;}
+        public string phoneNumber{get;set;}
+        public string address    {get;set;}
+        public string gender     {get;set;}
 
         public User(string firstName,string lastName,string age,string email,string password,string phoneNumber,string address,string gender)
         {
-            this._firstName = firstName;
-            this._lastName = lastName;
-            this._age        = age;
-            this._email      = email;
-            this._password   = password;
-            this._phoneNumber =phoneNumber;
-            this._address     = address;
-            this._gender      = gender;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age        = age;
+            this.email      = email;
+            this.password   = password;
+            this.phoneNumber =phoneNumber;
+            this.address     = address;
+            this.gender      = gender;
         }
 
 

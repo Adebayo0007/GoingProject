@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WWRoEoLGjD+w3QgKXrpiAzOJP1cPGhMAeaD7FXfeRbgT2E9vHAENndMxMAQYITUrtaSDubEErft7a/Eqw01MJQ==",
+  "dgSpecHash": "ghShEXreX3OJalyMDOFL9r+OLNsvcfVbAJuiOCdfPUv+lAUrAB6BGyigtprQ8xoT/6WgEzMzIaEdOlW/Kmse8A==",
   "success": true,
-  "projectFilePath": "c:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\LegitBankApp\\LegitBankApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",

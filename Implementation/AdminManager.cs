@@ -24,13 +24,13 @@ namespace LegitBankApp.Implementations
                 
                 Admin ad = new Admin(firstName, lastName, age, email, password, phoneNumber, address, gender);
 
-                System.Console.WriteLine($"\n\t<<<<<Your ID number is: {ad._staffID}>>>>>");
+                System.Console.WriteLine($"\n\t<<<<<Your ID number is: {ad.staffID}>>>>>");
                
 
 
                 using (var connection = new MySqlConnection(conn))
                 {
-                    string qur = $"insert into admin (staffId,firstName, lastName, age, email, password, phoneNumber, address, gender) values ('{ad._staffID}','{ad._firstName}','{ad._lastName}','{ad._age}','{ad._email.Trim().ToUpper()}','{ad._password}','{ad._phoneNumber}','{ad._address}','{ad._gender}')";
+                    string qur = $"insert into admin (staffId,firstName, lastName, age, email, password, phoneNumber, address, gender) values ('{ad.staffID}','{ad.firstName}','{ad.lastName}','{ad.age}','{ad.email.Trim().ToUpper()}','{ad.password}','{ad.phoneNumber}','{ad.address}','{ad.gender}')";
                     connection.Open();
                     using (var command = new MySqlCommand(qur, connection))
                     {
@@ -108,7 +108,7 @@ namespace LegitBankApp.Implementations
                             if(execute > 0)
                             {
 
-                                System.Console.WriteLine($"\n\t{admin._firstName} {admin._lastName} Successfully deleted. ");
+                                System.Console.WriteLine($"\n\t{admin.firstName} {admin.lastName} Successfully deleted. ");
                             }
                            
                         }
@@ -183,7 +183,7 @@ namespace LegitBankApp.Implementations
             {
                 System.Console.WriteLine(ex.Message);
             }
-            return admin is not null && admin._email.ToUpper() == email.ToUpper() && admin._password == passWord ? admin : null;
+            return admin is not null && admin.email.ToUpper() == email.ToUpper() && admin.password == passWord ? admin : null;
 
             }
 
